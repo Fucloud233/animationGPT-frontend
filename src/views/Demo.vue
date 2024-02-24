@@ -17,10 +17,20 @@
                         "
                     >
                         <h1>AI动作生成</h1>
-                        <el-radio-group v-model="needTranslate">
-                            <el-radio-button label="true">中</el-radio-button>
-                            <el-radio-button label="false">En</el-radio-button>
-                        </el-radio-group>
+                        <div style="display: flex; align-items: center">
+                            <span style="padding-right: 10px">输入语言: </span>
+                            <el-radio-group
+                                v-model="needTranslate"
+                                size="small"
+                            >
+                                <el-radio-button label="true"
+                                    >中</el-radio-button
+                                >
+                                <el-radio-button label="false"
+                                    >En</el-radio-button
+                                >
+                            </el-radio-group>
+                        </div>
                     </div>
 
                     <el-input
@@ -39,10 +49,15 @@
 
                     <!-- 参考示例显示 -->
                     <h2>参考示例</h2>
-                    <ul style="padding-left: 15px">
-                        <li v-for="example in examples">{{ example.zh }}</li>
-                    </ul>
-                    <p style="color: #409eff">
+                    <el-scrollbar style="height: 39%">
+                        <ul style="padding: 0 10px 0 15px; margin: 0">
+                            <li v-for="example in examples">
+                                {{ example.zh }}
+                            </li>
+                        </ul>
+                    </el-scrollbar>
+
+                    <p style="color: #409eff; margin: 10px 0">
                         目前可支持地武器动作模态类型：
                         匕首/大剑/太刀/曲剑/斧/载/锤/拳头
                     </p>
@@ -50,7 +65,23 @@
 
                 <div style="width: 20px"></div>
                 <div id="right-wrap" style="width: 50%">
-                    <div class="wrap" style="height: 90%"></div>
+                    <div
+                        class="wrap"
+                        style="
+                            height: 90%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                        "
+                    >
+                        <video
+                            :src="videoUrl"
+                            style="height: 100%; width: 100%"
+                            controls
+                            loop
+                        ></video>
+                    </div>
+                    <!-- 下载栏 -->
                     <div
                         class="wrap"
                         style="
@@ -83,6 +114,8 @@ export default {
     components: { BasicLayout, Download },
     data() {
         return {
+            videoUrl: new URL(`../assets/test/video.mp4`, import.meta.url).href,
+
             needTranslate: false,
             examples: [
                 {
@@ -130,14 +163,10 @@ body {
 }
 
 .wrap {
-    /* flex: 1; */
-
     background-color: white;
     border: 1px gray;
     padding: 20px 25px;
     box-sizing: border-box;
-    /* width: 49%; */
-    /* height: 100%; */
 
     border-radius: 15px;
     border: 1.5px solid #cfcfcf;
