@@ -2,10 +2,16 @@
     <BasicLayout>
         <template #main>
             <div id="main">
+                <!-- 左侧一栏 -->
                 <div
                     id="operator-wrap"
                     class="wrap"
-                    style="padding-right: 15px; width: 50%"
+                    style="
+                        padding-right: 15px;
+                        width: 50%;
+                        display: flex;
+                        flex-direction: column;
+                    "
                 >
                     <!-- 生成操作区域 -->
                     <div
@@ -49,7 +55,7 @@
 
                     <!-- 参考示例显示 -->
                     <h2>参考示例</h2>
-                    <el-scrollbar style="height: 39%">
+                    <el-scrollbar>
                         <ul style="padding: 0 10px 0 15px; margin: 0">
                             <li v-for="example in examples">
                                 {{ example.zh }}
@@ -145,10 +151,6 @@ export default {
 </script>
 
 <style>
-body {
-    /* overflow-y: hidden; */
-}
-
 #main {
     background-color: #f7f7f7;
     height: 100%;
@@ -186,19 +188,4 @@ body {
     flex-direction: column;
     justify-content: space-between;
 }
-
-/* .set-other-btn {
-    color: #fff;
-    background-color: #fa4eab;
-    border-color: #fa4eab;
-}
-.set-other-btn:hover {
-    background-color: #fe83c6;
-    border-color: #fe83c6;
-}
-
-.set-other-btn:focus {
-    background-color: #fe83c6;
-    border-color: #fe83c6;
-} */
 </style>
