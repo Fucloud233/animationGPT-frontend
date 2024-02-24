@@ -1,6 +1,9 @@
 <template>
     <!-- 通过变量设置属性 -->
-    <Icon :style="{ width: width, fill: color }"></Icon>
+
+    <el-icon :style="{ 'font-size': size + 'px' }">
+        <Icon :style="{ fill: color }"></Icon>
+    </el-icon>
 </template>
 
 <script setup lang="ts">
@@ -11,7 +14,7 @@ const props = defineProps({
         type: String,
         required: true,
     },
-    width: {
+    size: {
         type: Number,
         default: 32,
     },
