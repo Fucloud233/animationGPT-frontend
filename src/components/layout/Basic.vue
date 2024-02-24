@@ -6,10 +6,7 @@
             <!-- <embed src="../../assets/icon/translate.svg" type="image/svg+xml" /> -->
             <SvgIcon name="translate" color="white" />
         </el-header>
-        <div style="height: 100%">
-            <el-main> <slot name="main"></slot></el-main>
-            <!-- <el-footer> </el-footer> -->
-        </div>
+        <el-main> <slot name="main"></slot></el-main>
     </el-container>
 </template>
 
@@ -26,6 +23,11 @@ export default { components: { SvgIcon } };
     text-decoration: none;
     color: white;
     margin: 0;
+}
+.el-container {
+    height: 100%;
+
+    display: flex;
 }
 .el-header {
     height: 50px;
