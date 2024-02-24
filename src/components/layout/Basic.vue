@@ -3,8 +3,17 @@
         <el-header>
             <a href="/" id="title">AnimationGPT</a>
 
-            <!-- <embed src="../../assets/icon/translate.svg" type="image/svg+xml" /> -->
-            <SvgIcon name="translate" color="white" />
+            <el-dropdown>
+                <SvgIcon name="translate" color="white" />
+                <template #dropdown>
+                    <el-dropdown-menu>
+                        <!-- <el-dropdown-item>简体中文</el-dropdown-item> -->
+                        <el-dropdown-item
+                            >English</el-dropdown-item
+                        ></el-dropdown-menu
+                    >
+                </template>
+            </el-dropdown>
         </el-header>
         <el-main> <slot name="main"></slot></el-main>
     </el-container>
