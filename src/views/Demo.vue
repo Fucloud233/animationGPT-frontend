@@ -1,114 +1,102 @@
 <template>
-    <BasicLayout>
-        <template #main>
-            <div id="main">
-                <!-- 左侧一栏 -->
-                <div
-                    id="operator-wrap"
-                    class="wrap"
-                    style="
-                        padding-right: 15px;
-                        width: 50%;
-                        display: flex;
-                        flex-direction: column;
-                    "
-                >
-                    <!-- 生成操作区域 -->
-                    <div
-                        style="
-                            display: flex;
-                            justify-content: space-between;
-                            align-items: center;
-                            margin: 5px 0 15px 0;
-                        "
-                    >
-                        <h1>AI动作生成</h1>
-                        <div style="display: flex; align-items: center">
-                            <span style="padding-right: 10px">输入语言: </span>
-                            <el-radio-group
-                                v-model="needTranslate"
-                                size="small"
-                            >
-                                <el-radio-button label="true"
-                                    >中</el-radio-button
-                                >
-                                <el-radio-button label="false"
-                                    >En</el-radio-button
-                                >
-                            </el-radio-group>
-                        </div>
-                    </div>
-
-                    <el-input
-                        style="padding-bottom: 15px"
-                        placeholder="请输入提示词以生成动作..."
-                        rows="6"
-                        resize="none"
-                        type="textarea"
-                    ></el-input>
-                    <div style="text-align: right">
-                        <el-button> 清除 </el-button>
-                        <el-button type="primary">立即生成</el-button>
-                    </div>
-
-                    <el-divider></el-divider>
-
-                    <!-- 参考示例显示 -->
-                    <h2>参考示例</h2>
-                    <el-scrollbar>
-                        <ul style="padding: 0 10px 0 15px; margin: 0">
-                            <li v-for="example in examples">
-                                {{ example.zh }}
-                            </li>
-                        </ul>
-                    </el-scrollbar>
-
-                    <p style="color: #409eff; margin: 10px 0">
-                        目前可支持地武器动作模态类型：
-                        匕首/大剑/太刀/曲剑/斧/载/锤/拳头
-                    </p>
+    <div id="main">
+        <!-- 左侧一栏 -->
+        <div
+            id="operator-wrap"
+            class="wrap"
+            style="
+                padding-right: 15px;
+                width: 50%;
+                display: flex;
+                flex-direction: column;
+            "
+        >
+            <!-- 生成操作区域 -->
+            <div
+                style="
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin: 5px 0 15px 0;
+                "
+            >
+                <h1>AI动作生成</h1>
+                <div style="display: flex; align-items: center">
+                    <span style="padding-right: 10px">输入语言: </span>
+                    <el-radio-group v-model="needTranslate" size="small">
+                        <el-radio-button label="true">中</el-radio-button>
+                        <el-radio-button label="false">En</el-radio-button>
+                    </el-radio-group>
                 </div>
-
-                <div style="width: 20px"></div>
-                <div id="right-wrap" style="width: 50%">
-                    <div
-                        class="wrap"
-                        style="
-                            height: 90%;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                        "
-                    >
-                        <video
-                            :src="videoUrl"
-                            style="height: 100%; width: 100%"
-                            controls
-                            loop
-                        ></video>
-                    </div>
-                    <!-- 下载栏 -->
-                    <div
-                        class="wrap"
-                        style="
-                            height: 8%;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                        "
-                    >
-                        <el-button class="my-btn">
-                            <el-icon><Download /></el-icon> <span>mp4下载</span>
-                        </el-button>
-                        <el-button class="my-btn">
-                            <el-icon><Download /></el-icon> <span>bvh下载</span>
-                        </el-button>
-                    </div>
-                </div>
-                <!-- header -->
             </div>
-        </template>
-    </BasicLayout>
+
+            <el-input
+                style="padding-bottom: 15px"
+                placeholder="请输入提示词以生成动作..."
+                rows="6"
+                resize="none"
+                type="textarea"
+            ></el-input>
+            <div style="text-align: right">
+                <el-button> 清除 </el-button>
+                <el-button type="primary">立即生成</el-button>
+            </div>
+
+            <el-divider></el-divider>
+
+            <!-- 参考示例显示 -->
+            <h2>参考示例</h2>
+            <el-scrollbar>
+                <ul style="padding: 0 10px 0 15px; margin: 0">
+                    <li v-for="example in examples">
+                        {{ example.zh }}
+                    </li>
+                </ul>
+            </el-scrollbar>
+
+            <p style="color: #409eff; margin: 10px 0">
+                目前可支持地武器动作模态类型： 匕首/大剑/太刀/曲剑/斧/载/锤/拳头
+            </p>
+        </div>
+
+        <div style="width: 20px"></div>
+        <div id="right-wrap" style="width: 50%">
+            <div
+                class="wrap"
+                style="
+                    height: 90%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                "
+            >
+                <video
+                    :src="videoUrl"
+                    style="height: 100%; width: 100%"
+                    controls
+                    loop
+                ></video>
+            </div>
+            <!-- 下载栏 -->
+            <div
+                class="wrap"
+                style="
+                    height: 8%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                "
+            >
+                <el-button class="my-btn">
+                    <el-icon><Download /></el-icon> <span>mp4下载</span>
+                </el-button>
+                <el-button class="my-btn">
+                    <el-icon><Download /></el-icon> <span>bvh下载</span>
+                </el-button>
+            </div>
+        </div>
+        <!-- header -->
+    </div>
 </template>
 
 <script lang="ts">

@@ -1,7 +1,9 @@
 <template>
-    <Demo></Demo>
+    <BasicLayout>
+        <template #main> <router-view /></template>
+    </BasicLayout>
 </template>
 
 <script setup lang="ts">
-import Demo from "./views/Demo.vue";
+import BasicLayout from "./components/layout/Basic.vue";
 </script>
