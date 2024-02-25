@@ -46,6 +46,9 @@
             tasks including text-driven motion generation, motion captioning,
             motion prediction, and motion in-between.
         </p>
+
+        <ExampleDisplay />
+
         <SubTitle top="Our" bottom="Method" />
         <p>
             To involve large language data and models in the motion generation
@@ -65,11 +68,13 @@
 <script lang="ts">
 import SvgIcon from "../components/SvgIcon.vue";
 import SubTitle from "../components/SubTitle.vue";
+import ExampleDisplay from "../components/ExampleDisplay.vue";
 
 export default {
     components: {
         SvgIcon,
         SubTitle,
+        ExampleDisplay,
     },
     data() {
         return {
@@ -110,6 +115,7 @@ export default {
         color: #409eff;
         font-size: 72px;
         font-weight: bold;
+        text-align: center;
         margin-top: 40px;
         margin-bottom: 50px;
 
