@@ -4,14 +4,12 @@
             <a href="/" id="title">AnimationGPT</a>
 
             <el-dropdown>
-                <SvgIcon name="translate" color="white" />
+                <span> <SvgIcon name="translate" color="white" /> </span>
                 <template #dropdown>
                     <el-dropdown-menu>
                         <!-- <el-dropdown-item>简体中文</el-dropdown-item> -->
-                        <el-dropdown-item
-                            >English</el-dropdown-item
-                        ></el-dropdown-menu
-                    >
+                        <el-dropdown-item>English</el-dropdown-item>
+                    </el-dropdown-menu>
                 </template>
             </el-dropdown>
         </el-header>
