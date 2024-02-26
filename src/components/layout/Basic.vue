@@ -4,7 +4,9 @@
             <a href="/" id="title">AnimationGPT</a>
 
             <el-dropdown>
-                <span> <SvgIcon name="translate" color="white" /> </span>
+                <span style="outline: unset">
+                    <SvgIcon name="translate" color="white"></SvgIcon>
+                </span>
                 <template #dropdown>
                     <el-dropdown-menu>
                         <!-- <el-dropdown-item>简体中文</el-dropdown-item> -->
@@ -19,7 +21,6 @@
 
 <script lang="ts">
 import SvgIcon from "../SvgIcon.vue";
-// import Translate from "../../assets/icons/translate.svg";
 
 export default { components: { SvgIcon } };
 </script>
