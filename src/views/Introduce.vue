@@ -1,7 +1,7 @@
 <template>
     <div id="title-area">
-        <div class="cover">游戏动作</div>
-        <div class="title">AnimationGPT 动作大模型</div>
+        <div class="cover">{{ $t("introduce.coverTitle") }}</div>
+        <div class="title">{{ $t("introduce.mainTitle") }}</div>
         <div class="jump">
             <el-button
                 class="my-btn"
@@ -23,7 +23,10 @@
     </div>
 
     <div id="body-area">
-        <SubTitle top="Article" bottom="Abstract" />
+        <SubTitle
+            :top="$t('introduce.article')"
+            :bottom="$t('introduce.abstract')"
+        />
         <p>
             Though the advancement of pre-trained large language models unfolds,
             the exploration of building a unified model for language and other
@@ -50,7 +53,7 @@
 
         <ExampleDisplay />
 
-        <SubTitle top="Our" bottom="Method" />
+        <SubTitle :top="$t('introduce.our')" :bottom="$t('introduce.method')" />
         <p>
             To involve large language data and models in the motion generation
             tasks, we propose a unified motion-language framework named

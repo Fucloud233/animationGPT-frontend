@@ -9,8 +9,15 @@
                 </span>
                 <template #dropdown>
                     <el-dropdown-menu>
-                        <!-- <el-dropdown-item>简体中文</el-dropdown-item> -->
-                        <el-dropdown-item>English</el-dropdown-item>
+                        <!-- 切换语言 -->
+                        <div v-for="lang in langList">
+                            <el-dropdown-item
+                                v-if="$i18n.locale != lang.value"
+                                @click="$i18n.locale = lang.value"
+                            >
+                                {{ lang.label }}
+                            </el-dropdown-item>
+                        </div>
                     </el-dropdown-menu>
                 </template>
             </el-dropdown>
@@ -22,7 +29,23 @@
 <script lang="ts">
 import SvgIcon from "../SvgIcon.vue";
 
-export default { components: { SvgIcon } };
+export default {
+    components: { SvgIcon },
+    data() {
+        return {
+            langList: [
+                {
+                    value: "zhCN",
+                    label: "简体中文",
+                },
+                {
+                    value: "enUS",
+                    label: "English",
+                },
+            ],
+        };
+    },
+};
 </script>
 
 <style scoped>

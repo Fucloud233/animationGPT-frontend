@@ -20,9 +20,11 @@
                     margin: 5px 0 15px 0;
                 "
             >
-                <h1>AI动作生成</h1>
+                <h1>{{ $t("demo.title") }}</h1>
                 <div style="display: flex; align-items: center">
-                    <span style="padding-right: 10px">输入语言: </span>
+                    <span style="padding-right: 10px"
+                        >{{ $t("demo.inputLang") }}:
+                    </span>
                     <el-radio-group v-model="needTranslate" size="small">
                         <el-radio-button label="true">中</el-radio-button>
                         <el-radio-button label="false">En</el-radio-button>
@@ -32,20 +34,20 @@
 
             <el-input
                 style="padding-bottom: 15px"
-                placeholder="请输入提示词以生成动作..."
+                :placeholder="$t('demo.inputPlaceHolder')"
                 rows="6"
                 resize="none"
                 type="textarea"
             ></el-input>
             <div style="text-align: right">
-                <el-button> 清除 </el-button>
-                <el-button type="primary">立即生成</el-button>
+                <el-button> {{ $t("demo.clear") }} </el-button>
+                <el-button type="primary"> {{ $t("demo.generate") }}</el-button>
             </div>
 
             <el-divider></el-divider>
 
             <!-- 参考示例显示 -->
-            <h2>参考示例</h2>
+            <h2>{{ $t("demo.refExample") }}</h2>
             <el-scrollbar>
                 <ul style="padding: 0 10px 0 15px; margin: 0">
                     <li v-for="example in examples">
@@ -88,10 +90,12 @@
                 "
             >
                 <el-button class="my-btn">
-                    <el-icon><Download /></el-icon> <span>mp4下载</span>
+                    <el-icon><Download /></el-icon>
+                    <span>mp4 {{ $t("demo.download") }}</span>
                 </el-button>
                 <el-button class="my-btn">
-                    <el-icon><Download /></el-icon> <span>bvh下载</span>
+                    <el-icon><Download /></el-icon>
+                    <span>bvh {{ $t("demo.download") }}</span>
                 </el-button>
             </div>
         </div>
