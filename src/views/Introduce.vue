@@ -2,7 +2,7 @@
     <div id="title-area">
         <div class="cover">游戏动作</div>
         <div class="title">AnimationGPT 动作大模型</div>
-        <div>
+        <div class="jump">
             <el-button
                 class="my-btn"
                 style="box-shadow: 0 0 5px"
@@ -127,6 +127,8 @@ export default {
         margin-top: 40px;
         margin-bottom: 50px;
 
+        user-select: none;
+
         position: relative;
     }
 
@@ -147,6 +149,10 @@ export default {
         position: absolute;
 
         margin-top: 0;
+    }
+
+    .jump {
+        position: relative;
     }
 }
 
