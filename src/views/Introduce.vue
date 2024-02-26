@@ -7,6 +7,7 @@
                 class="my-btn"
                 style="box-shadow: 0 0 5px"
                 v-for="router in routers"
+                @click="router.action"
             >
                 <SvgIcon
                     :name="router.name"
@@ -84,17 +85,24 @@ export default {
                 {
                     name: "app",
                     label: "Demo",
-                    url: "/demo",
+                    action: () => {
+                        this.$router.push("/demo");
+                    },
                 },
                 {
                     name: "article",
                     label: "Article",
-                    url: "www.baidu.com",
+                    action: () => {
+                        window.location.href = "https://www.zhihu.com/";
+                    },
                 },
                 {
                     name: "github",
                     label: "Github",
-                    url: "/demo",
+                    action: () => {
+                        window.location.href =
+                            "https://github.com/fyyakaxyy/animationGPT";
+                    },
                 },
             ],
         };
