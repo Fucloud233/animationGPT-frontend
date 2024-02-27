@@ -1,7 +1,12 @@
 <template>
     <el-container style="height: 100%">
         <el-header>
-            <a href="/" id="title">AnimationGPT</a>
+            <el-button
+                @click="$router.push({ name: 'introduce' })"
+                id="title"
+                link
+                >AnimationGPT</el-button
+            >
 
             <el-dropdown>
                 <span style="outline: unset">
@@ -13,7 +18,7 @@
                         <div v-for="lang in langList">
                             <el-dropdown-item
                                 v-if="$i18n.locale != lang.value"
-                                @click="$i18n.locale = lang.value"
+                                @click="changeLanguage(lang.value)"
                             >
                                 {{ lang.label }}
                             </el-dropdown-item>
@@ -44,6 +49,16 @@ export default {
                 },
             ],
         };
+    },
+    methods: {
+        changeLanguage(lang: string) {
+            this.$router.push({
+                params: {
+                    ...this.$route.params,
+                    lang: lang,
+                },
+            });
+        },
     },
 };
 </script>

@@ -50,8 +50,8 @@
             <h2>{{ $t("demo.refExample") }}</h2>
             <el-scrollbar>
                 <ul style="padding: 0 10px 0 15px; margin: 0">
-                    <li v-for="example in examples">
-                        {{ example.zh }}
+                    <li v-for="example in $tm('demo.examples')">
+                        {{ example }}
                     </li>
                 </ul>
             </el-scrollbar>
@@ -89,13 +89,16 @@
                     justify-content: center;
                 "
             >
+                <span style="padding-right: 15px; color: #409eff"
+                    >{{ $t("demo.download") }}:</span
+                >
                 <el-button class="my-btn">
                     <el-icon><Download /></el-icon>
-                    <span>mp4 {{ $t("demo.download") }}</span>
+                    <span>mp4</span>
                 </el-button>
                 <el-button class="my-btn">
                     <el-icon><Download /></el-icon>
-                    <span>bvh {{ $t("demo.download") }}</span>
+                    <span>bvh</span>
                 </el-button>
             </div>
         </div>
@@ -115,28 +118,6 @@ export default {
             videoUrl: new URL(`../assets/test/video.mp4`, import.meta.url).href,
 
             needTranslate: false,
-            examples: [
-                {
-                    zh: "角色双手自然下垂与身体两侧，身体中心稍微下压，向左缓慢移动",
-                },
-                { zh: "角色轻盈向前跑动" },
-                { zh: "角色轻盈地向前方翻滚，快速地起身" },
-                {
-                    zh: "角色受击，身体大硬直，均速起身，惊慌失措地身体失衡向左退，右手挥舞在空中",
-                },
-                {
-                    zh: "角色右手持大剑，蓄力重击。角色双腿半蹲，上半身微微向右侧侧身，紧接着向前劈砍。最后回到原始站立姿势。",
-                },
-                {
-                    zh: "角色双持戟进行蓄力重击，扎实地侧身扭腰向左，右腿向前迈步，双手共握武器，从左后蓄力，然后向前连续挥两圈。",
-                },
-                {
-                    zh: "角色左手持刺剑进行轻击，轻盈地右手挽一个刀花后向前刺击，同时向前碎步，随后恢复站姿。",
-                },
-                {
-                    zh: "角色向右转身，扎马步，右手将模丸插入左手刀鞘中蓄力，然后顺时针转身向前挥。",
-                },
-            ],
         };
     },
 };

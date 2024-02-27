@@ -14,10 +14,13 @@ const messages = {
 
 const i18n = createI18n({
     locale: "enUS",
-    fallbackLocale: "zhCn",
     // legacy: false,
     // globalInjection: true,
     messages: messages,
 });
+
+export const langList = Object.keys(messages);
+
+export type LangType = typeof i18n.global.locale;
 
 export default i18n;

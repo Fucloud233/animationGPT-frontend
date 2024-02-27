@@ -17,8 +17,8 @@
                 ><span>{{ router.label }}</span></el-button
             >
         </div>
-        <p style="margin: 30px 0 40px 0">
-            Yihao Liao, Yiyu Fu, Ziming Cheng ,Jiangfeiyang Wang
+        <p style="margin: 30px 0 40px 0; position: relative">
+            Yihao Liao, Yiyu Fu, Ziming Cheng, Jiangfeiyang Wang
         </p>
     </div>
 
@@ -89,7 +89,7 @@ export default {
                     name: "app",
                     label: "Demo",
                     action: () => {
-                        this.$router.push("/demo");
+                        this.$router.push({ name: "demo" });
                     },
                 },
                 {
@@ -141,7 +141,7 @@ export default {
         font-weight: bold;
         opacity: 0.5;
         text-align: center;
-        letter-spacing: 30px;
+        letter-spacing: 15px;
 
         width: 100%;
         left: 50%;
