@@ -6,8 +6,8 @@ export default {
         article: "Article",
         abstract: "Abstract",
 
-        our: "our",
-        method: "method",
+        our: "Our",
+        method: "Method",
 
         prompt: "Prompt",
 
