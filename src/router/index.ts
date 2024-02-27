@@ -34,7 +34,7 @@ router.beforeEach((to, from, next) => {
             router.push({
                 params: {
                     ...to.params,
-                    lang: langList[0];
+                    lang: langList[0],
                 },
             });
         }
