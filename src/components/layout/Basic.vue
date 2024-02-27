@@ -13,7 +13,7 @@
                     <SvgIcon name="translate" color="white"></SvgIcon>
                 </span>
                 <template #dropdown>
-                    <el-dropdown-menu>
+                    <el-dropdown-menu style="min-width: 100px">
                         <!-- 切换语言 -->
                         <div v-for="lang in langList">
                             <el-dropdown-item
