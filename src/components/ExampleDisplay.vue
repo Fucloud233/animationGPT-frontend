@@ -1,19 +1,22 @@
 <template>
     <div>
-        <!-- example的选择条 -->
+        <!-- 1. example的选择条 -->
         <div class="select-bar">
             <el-button @click="scroll(true)" text style="margin-right: 15px">
                 <el-icon><ArrowLeft /></el-icon>
             </el-button>
             <div class="examples-wrap" ref="examplesRef">
                 <div v-for="i in Array(30).keys()" class="example-id-wrap">
-                    <span
+                    <!-- 按钮点击切换视频 -->
+                    <el-button
                         :style="{
                             color: i == selectId ? '#409eff' : 'gray',
                         }"
+                        @click="changeExample(i)"
+                        link
                     >
-                        Example {{ formatId(i) }}
-                    </span>
+                        Example {{ formatId(i + 1) }}
+                    </el-button>
                 </div>
             </div>
             <el-button @click="scroll(false)" text style="margin-left: 15px">
@@ -21,9 +24,17 @@
             </el-button>
         </div>
 
-        <p id="prompt">Text: {{ curPrompt }}</p>
+        <!-- 2. Prompt文本-->
+        <p id="prompt">{{ $t("introduce.prompt") }}: {{ curPrompt }}</p>
+
+        <!-- 3. 显示视频播放-->
         <div style="display: flex; justify-content: space-between">
-            <div class="example-wrap" v-for="example in examples">
+            <!-- 根据examples数量动态控制 -->
+            <div
+                class="example-wrap"
+                v-for="example in examples"
+                :style="{ width: videoSize, height: videoSize }"
+            >
                 <div class="kind-wrap">{{ example.kind }}</div>
                 <el-image :src="example.url"></el-image>
             </div>
@@ -33,6 +44,7 @@
 
 <script lang="ts">
 import { ArrowLeft, ArrowRight } from "@element-plus/icons-vue";
+import { getGifUrl } from "../utils";
 
 export default {
     components: {
@@ -41,40 +53,44 @@ export default {
     },
 
     data() {
-        const testUrl = new URL(`../assets/test/animation.gif`, import.meta.url)
-            .href;
+        // 需要展示的类型
+        const kindList = ["Original", "S4-50", "S4-70"];
+        const defaultId = 0;
 
-        // const examplesRef = ref<HTMLDivElement>();
+        let examples = [] as { kind: string; url: string }[];
+        for (let kind of kindList) {
+            examples.push({
+                kind: kind,
+                url: "",
+            });
+        }
 
         return {
-            curPrompt: "The character runs forward lighty.",
-
-            selectId: 0,
-            // examplesRef: examplesRef,
-
-            examples: [
-                {
-                    kind: "Original SMPL",
-                    url: testUrl,
-                },
-                {
-                    kind: "Original",
-                    url: testUrl,
-                },
-                {
-                    kind: "S4-50%",
-                    url: testUrl,
-                },
-                {
-                    kind: "S4-70%",
-                    url: testUrl,
-                },
-            ],
+            selectId: defaultId,
+            examples: examples,
+            videoSize: 100 / examples.length - 1 + "%",
         };
     },
+    mounted() {
+        this.changeExample(this.selectId);
+    },
+    computed: {
+        curPrompt() {
+            const exampleList = this.$tm("introduce.examples") as Array<string>;
+            return exampleList[this.selectId];
+        },
+    },
     methods: {
+        changeExample(i: number) {
+            this.selectId = i;
+
+            // 更新示例图片URL
+            for (let example of this.examples) {
+                let name = `example/${example.kind}/${this.formatId(i)}`;
+                example.url = getGifUrl(name);
+            }
+        },
         formatId(id: number) {
-            id += 1;
             if (id < 10) {
                 return "0" + id;
             } else {
@@ -132,15 +148,14 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    width: 24%;
 }
 
 .kind-wrap {
     background-color: #f0f0f0;
-    padding: 5px 10px;
+    padding: 10px 10px;
     width: 100%;
     margin-bottom: 15px;
+    font-size: 16px;
     text-align: center;
 
     box-sizing: border-box;
