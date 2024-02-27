@@ -49,7 +49,7 @@
             <!-- 参考示例显示 -->
             <h2>{{ $t("demo.refExample") }}</h2>
             <el-scrollbar>
-                <ul style="padding: 0 10px 0 15px; margin: 0">
+                <ul style="padding-right: 15px; margin: 0">
                     <li v-for="example in $tm('demo.examples')">
                         {{ example }}
                     </li>
