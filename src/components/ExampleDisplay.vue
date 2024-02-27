@@ -35,7 +35,7 @@
                 v-for="example in examples"
                 :style="{ width: videoSize, height: videoSize }"
             >
-                <div class="kind-wrap">{{ example.kind }}</div>
+                <div class="kind-wrap">{{ example.label }}</div>
                 <el-image :src="example.url"></el-image>
             </div>
         </div>
@@ -55,12 +55,14 @@ export default {
     data() {
         // 需要展示的类型
         const kindList = ["Original", "S4-50", "S4-70"];
+        const kindLabelList = ["Original", "S4-50%", "S4-70%"];
         const defaultId = 0;
 
-        let examples = [] as { kind: string; url: string }[];
-        for (let kind of kindList) {
+        let examples = [] as { value: string; label: string; url: string }[];
+        for (let i = 0; i < kindList.length; i++) {
             examples.push({
-                kind: kind,
+                value: kindList[i],
+                label: kindLabelList[i],
                 url: "",
             });
         }
@@ -86,7 +88,7 @@ export default {
 
             // 更新示例图片URL
             for (let example of this.examples) {
-                let name = `example/${example.kind}/${this.formatId(i)}`;
+                let name = `example/${example.value}/${this.formatId(i)}`;
                 example.url = getGifUrl(name);
             }
         },
