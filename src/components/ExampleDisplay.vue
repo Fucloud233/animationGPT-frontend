@@ -28,15 +28,29 @@
         <p id="prompt">{{ $t("introduce.prompt") }}: {{ curPrompt }}</p>
 
         <!-- 3. 显示视频播放-->
-        <div style="display: flex; justify-content: space-between">
+        <div
+            style="display: flex; justify-content: space-between"
+            ref="examples"
+        >
             <!-- 根据examples数量动态控制 -->
-            <div
-                class="example-wrap"
-                v-for="example in examples"
-                :style="{ width: videoSize, height: videoSize }"
-            >
+            <div class="example-wrap" v-for="example in examples">
                 <div class="kind-wrap">{{ example.label }}</div>
-                <el-image :src="example.url"></el-image>
+                <div
+                    v-loading="isLoadingExample"
+                    class="example-video"
+                    :style="{
+                        'min-height': exampleVideoSize,
+                        'min-width': exampleVideoSize,
+                    }"
+                >
+                    <img
+                        :src="example.url"
+                        @load="loadExample()"
+                        ref="exampleVideo"
+                        :width="exampleVideoSize"
+                        v-show="!isLoadingExample"
+                    />
+                </div>
             </div>
         </div>
     </div>
@@ -54,8 +68,8 @@ export default {
 
     data() {
         // 需要展示的类型
-        const kindList = ["Original", "S4-50", "S4-70"];
-        const kindLabelList = ["Original", "S4-50%", "S4-70%"];
+        const kindList = ["OriginalSMPL", "Original", "S4-50", "S4-70"];
+        const kindLabelList = ["Original SMPL", "Original", "S4-50%", "S4-70%"];
         const defaultId = 0;
 
         let examples = [] as { value: string; label: string; url: string }[];
@@ -70,11 +84,22 @@ export default {
         return {
             selectId: defaultId,
             examples: examples,
-            videoSize: 100 / examples.length - 1 + "%",
+
+            // 图片加载状态
+            isLoadingExample: false,
+            exampleLoadCount: 0,
+
+            exampleVideoSize: "",
         };
     },
     mounted() {
         this.changeExample(this.selectId);
+        this.updateExampleVideoSize();
+
+        // 动态修改视频的宽度
+        window.onresize = () => {
+            this.updateExampleVideoSize();
+        };
     },
     computed: {
         curPrompt() {
@@ -83,6 +108,13 @@ export default {
         },
     },
     methods: {
+        updateExampleVideoSize() {
+            const exampleRef = this.$refs.examples as HTMLDivElement;
+            const n: number = this.examples.length;
+            this.exampleVideoSize =
+                (exampleRef.clientWidth * (1 - n * 0.01)) / n + "px";
+        },
+
         changeExample(i: number) {
             this.selectId = i;
 
@@ -90,6 +122,18 @@ export default {
             for (let example of this.examples) {
                 let name = `example/${example.value}/${this.formatId(i)}`;
                 example.url = getGifUrl(name);
+            }
+
+            this.isLoadingExample = true;
+        },
+
+        // 图片加载完毕调用
+        loadExample() {
+            this.exampleLoadCount += 1;
+
+            if (this.exampleLoadCount == this.examples.length) {
+                this.isLoadingExample = false;
+                this.exampleLoadCount = 0;
             }
         },
         formatId(id: number) {
@@ -162,7 +206,7 @@ export default {
 
     box-sizing: border-box;
 }
-.el-image {
+.example-video {
     width: 100%;
     border: 1px solid #409eff;
 }
