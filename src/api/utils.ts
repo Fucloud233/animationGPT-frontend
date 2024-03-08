@@ -50,7 +50,5 @@ export function getApiUrl(name: string) {
 }
 
 export function blob2Url(data: any, type: string) {
-    const url = window.URL.createObjectURL(new Blob([data], { type: type }));
-
     return window.URL.createObjectURL(new Blob([data], { type: type }));
 }
