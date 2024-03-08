@@ -15,11 +15,17 @@ export async function generate(prompt: string, language: string) {
     return await axios(request).then((resp) => {
         const blobUrl = blob2Url(resp.data, VIDEO_TYPE);
 
-        // console.log(blobUrl);
+        // 响应头的文件名，也是该prompt对应的API
+        const id = extractFileName(resp.headers["content-disposition"]);
 
         return {
             data: blobUrl,
+            id: id,
             flag: true,
         };
     });
+}
+
+export function extractFileName(content: string) {
+    return content?.split(";")[1].split("=")[1];
 }
