@@ -25,9 +25,9 @@
                     <span style="padding-right: 10px"
                         >{{ $t("demo.inputLang") }}:
                     </span>
-                    <el-radio-group v-model="needTranslate" size="small">
-                        <el-radio-button label="true">中</el-radio-button>
-                        <el-radio-button label="false">En</el-radio-button>
+                    <el-radio-group v-model="language" size="small">
+                        <el-radio-button label="cn">中</el-radio-button>
+                        <el-radio-button label="en">En</el-radio-button>
                     </el-radio-group>
                 </div>
             </div>
@@ -38,10 +38,19 @@
                 rows="6"
                 resize="none"
                 type="textarea"
+                v-model="prompt"
             ></el-input>
             <div style="text-align: right">
-                <el-button> {{ $t("demo.clear") }} </el-button>
-                <el-button type="primary"> {{ $t("demo.generate") }}</el-button>
+                <el-button @click="toClear()">
+                    {{ $t("demo.clear") }}
+                </el-button>
+                <el-button
+                    type="primary"
+                    :loading="isGenerating"
+                    @click="toGenerate()"
+                >
+                    {{ $t("demo.generate") }}</el-button
+                >
             </div>
 
             <el-divider></el-divider>
@@ -63,6 +72,7 @@
 
         <div style="width: 20px"></div>
         <div id="right-wrap" style="width: 50%">
+            <!-- 视频播放栏 -->
             <div
                 class="wrap"
                 style="
@@ -73,9 +83,10 @@
                 "
             >
                 <video
+                    v-if="videoUrl != undefined"
                     :src="videoUrl"
                     style="height: 100%; width: 100%"
-                    controls
+                    :autoplay="true"
                     loop
                 ></video>
             </div>
@@ -111,14 +122,38 @@ import { Download } from "@element-plus/icons-vue";
 
 import BasicLayout from "../components/layout/Basic.vue";
 
+import { generate } from "../api/demo";
+
 export default {
     components: { BasicLayout, Download },
     data() {
         return {
-            videoUrl: new URL(`../assets/test/video.mp4`, import.meta.url).href,
+            videoUrl: undefined as string | undefined,
 
-            needTranslate: false,
+            isGenerating: false,
+
+            language: "en",
+
+            prompt: "Please create a motion that represents the power of the figure takes a few slighly hurried steps without raising their arms, it looks they are about to start running but haven't quite yet begun. to create a better world for all." as String,
         };
+    },
+    methods: {
+        async toGenerate() {
+            const prompt = this.prompt.trim();
+            if (prompt.length === 0) return;
+
+            this.isGenerating = true;
+
+            let result = await generate(prompt, this.language);
+            this.videoUrl = result.data as string;
+
+            this.isGenerating = false;
+        },
+
+        async toClear() {
+            if (!this.isGenerating) this.videoUrl = undefined;
+            this.prompt = "";
+        },
     },
 };
 </script>
