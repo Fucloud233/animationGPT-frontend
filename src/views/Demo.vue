@@ -128,13 +128,16 @@ export default {
     components: { BasicLayout, Download },
     data() {
         return {
-            videoUrl: undefined as string | undefined,
-
-            isGenerating: false,
-
             language: "en",
 
             prompt: "Please create a motion that represents the power of the figure takes a few slighly hurried steps without raising their arms, it looks they are about to start running but haven't quite yet begun. to create a better world for all." as String,
+
+            isGenerating: false,
+
+            videoUrl: undefined as string | undefined,
+re
+            // 用于计入当前的生成结果的id
+            curId: undefined as string | undefined,
         };
     },
     methods: {
@@ -146,6 +149,7 @@ export default {
 
             let result = await generate(prompt, this.language);
             this.videoUrl = result.data as string;
+            this.curId = result.id;
 
             this.isGenerating = false;
         },
