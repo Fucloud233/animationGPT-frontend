@@ -28,10 +28,7 @@
         <p id="prompt">{{ $t("introduce.prompt") }}: {{ curPrompt }}</p>
 
         <!-- 3. 显示视频播放-->
-        <div
-            style="display: flex; justify-content: space-between"
-            ref="examples"
-        >
+        <div style="display: flex; justify-content: space-between" ref="examples">
             <!-- 根据examples数量动态控制 -->
             <div class="example-wrap" v-for="example in examples">
                 <div class="kind-wrap">{{ example.label }}</div>
@@ -111,8 +108,7 @@ export default {
         updateExampleVideoSize() {
             const exampleRef = this.$refs.examples as HTMLDivElement;
             const n: number = this.examples.length;
-            this.exampleVideoSize =
-                (exampleRef.clientWidth * (1 - n * 0.01)) / n + "px";
+            this.exampleVideoSize = (exampleRef.clientWidth * (1 - n * 0.01)) / n + "px";
         },
 
         changeExample(i: number) {
@@ -144,9 +140,10 @@ export default {
             }
         },
         scroll(isLeft: boolean) {
+            // 使用总宽度来控制左右滑动的距离
             const div = this.$refs.examplesRef as HTMLDivElement;
 
-            let step = (div.scrollWidth / 30) * 5;
+            let step = div.clientWidth;
             if (isLeft) {
                 step = -step;
             }
