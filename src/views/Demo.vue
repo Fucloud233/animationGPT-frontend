@@ -103,13 +103,19 @@
                 <span style="padding-right: 15px; color: #409eff"
                     >{{ $t("demo.download") }}:</span
                 >
-                <el-button class="my-btn" @click="toDownloadMP4()">
+                <el-button
+                    class="my-btn"
+                    @click="toDownload(ResultFileKind.Mp4)"
+                >
                     <el-icon><Download /></el-icon>
-                    <span>mp4</span>
+                    <span>{{ ResultFileKind.Mp4 }}</span>
                 </el-button>
-                <el-button class="my-btn" @click="toDownloadBVH()">
+                <el-button
+                    class="my-btn"
+                    @click="toDownload(ResultFileKind.Bvh)"
+                >
                     <el-icon><Download /></el-icon>
-                    <span>bvh</span>
+                    <span>{{ ResultFileKind.Bvh }}</span>
                 </el-button>
             </div>
         </div>
@@ -123,9 +129,11 @@ import { Download } from "@element-plus/icons-vue";
 import BasicLayout from "../components/layout/Basic.vue";
 
 import { generate, download } from "../api/demo";
+import { messages } from "../utils/message";
+import { ResultFileKind } from "../utils/file";
 
 export default {
-    components: { BasicLayout, Download },
+    components: { BasicLayout, Download, ResultFileKind },
     data() {
         return {
             language: "en",
@@ -135,16 +143,21 @@ export default {
             isGenerating: false,
 
             // Notice: 当后台生成成功，二者都非 undefined，因此都可以判断生成情况
-            // 用于记录生成回来的视频 URL
+            // 生成结果的 视频连接 与 会话 id
             videoUrl: undefined as string | undefined,
-            // 用于计入当前的生成结果的id
             curId: undefined as string | undefined,
+
+            // Notice: 此处用于使 enum 类型生效
+            ResultFileKind: ResultFileKind,
         };
     },
     methods: {
         async toGenerate() {
             const prompt = this.prompt.trim();
-            if (prompt.length === 0) return;
+            if (prompt.length === 0) {
+                messages.promptIsEmpty();
+                return;
+            }
 
             this.isGenerating = true;
 
@@ -153,6 +166,8 @@ export default {
             this.curId = result.id;
 
             this.isGenerating = false;
+
+            messages.generateSuccess();
         },
 
         toClear() {
@@ -161,19 +176,24 @@ export default {
             this.curId = undefined;
         },
 
-        toDownloadMP4() {
-            if (this.videoUrl == undefined) return;
+        async toDownload(kind: ResultFileKind) {
+            if (this.videoUrl == undefined || this.curId == undefined) {
+                messages.motionNotGenerated();
+                return;
+            }
 
-            const filename = this.curId + ".mp4";
-            this.downloadFile(this.videoUrl, filename);
-        },
-        async toDownloadBVH() {
-            if (this.curId == undefined) return;
-            const filename = this.curId + ".bvh";
-
-            const result = await download(this.curId);
-
-            this.downloadFile(result.data, filename);
+            let filename = "";
+            switch (kind) {
+                case ResultFileKind.Mp4:
+                    filename = this.curId + ".mp4";
+                    this.downloadFile(this.videoUrl, filename);
+                    break;
+                case ResultFileKind.Bvh:
+                    filename = this.curId + ".bvh";
+                    const result = await download(this.curId);
+                    this.downloadFile(result.data, filename);
+                    break;
+            }
         },
         downloadFile(url: string, filename: string) {
             const link = document.createElement("a");
