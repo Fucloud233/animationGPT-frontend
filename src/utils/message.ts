@@ -1,5 +1,7 @@
 import { ElMessage } from "element-plus";
 
+import i18n from "../locales";
+
 function newMsg(message: string, type: "success" | "warning" | "error") {
     return ElMessage({
         message: message,
@@ -18,11 +20,13 @@ function newErrorMsg(message: string) {
     return newMsg(message, "error");
 }
 
+const t = i18n.global.t;
+
 export const messages = {
-    generateSuccess: () => newSuccessMsg("生成成功"),
+    generateSuccess: () => newSuccessMsg(t("msg.generateSuccess")),
 
-    promptIsEmpty: () => newWarningMsg("请输入提示词"),
+    promptIsEmpty: () => newWarningMsg(t("msg.promptIsEmpty")),
 
-    motionNotGenerated: () => newErrorMsg("动作尚未生成，请先生成"),
-    generateError: () => newErrorMsg("模型生成失败"),
+    motionNotGenerated: () => newErrorMsg(t("msg.motionNotGenerated")),
+    generateError: () => newErrorMsg(t("msg.generateError")),
 };

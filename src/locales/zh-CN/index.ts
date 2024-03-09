@@ -68,4 +68,12 @@ export default {
             "角色右手持斧，以跳跃的方式进行攻击。角色跃起，同时落地时右手向前劈砍，然后起身恢复站姿。",
         ],
     },
+
+    msg: {
+        generateSuccess: "生成成功",
+        generateError: "生成失败",
+
+        promptIsEmpty: "请输入提示词",
+        motionNotGenerated: "动作尚未生成，请先生成",
+    },
 };

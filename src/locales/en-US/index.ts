@@ -52,10 +52,10 @@ export default {
         inputPlaceHolder: "Please input text to generate action...",
         refExample: "Reference Examples",
 
-        clear: "clear",
-        generate: "generate",
+        clear: "Clear",
+        generate: "Generate",
 
-        download: "download",
+        download: "Download",
 
         examples: [
             "The character's hands hang naturally at the sides of their body, their body's center of gravity slightly lowered, and they move slowly to the left.",
@@ -67,5 +67,13 @@ export default {
             "The character holds a katana in their right hand, runs quickly and charges, then uses a direct and powerful attack to thrust forward, and finally returns to a standing posture.",
             "The character wields an axe in their right hand and performs a jumping attack. They jump up, and as they land, they swing the axe forward with their right hand before returning to a standing position.",
         ],
+    },
+
+    msg: {
+        generateSuccess: "Generate success",
+        generateError: "Generate error",
+
+        promptIsEmpty: "Please input prompt",
+        motionNotGenerated: "Motion hasn't been Generated",
     },
 };
