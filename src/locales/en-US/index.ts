@@ -59,7 +59,7 @@ export default {
 
         tips: "Tips",
         tipsForCNInput:
-            "You inputted in Chinese, but selected English instead, which may generate incorrectly. Do you want to continue?",
+            "The language of prompt you entered doesn't match what you selected, which may lead to incorrect generation. Do you want to continue?",
 
         examples: [
             "The character's hands hang naturally at the sides of their body, their body's center of gravity slightly lowered, and they move slowly to the left.",

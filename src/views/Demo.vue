@@ -7,14 +7,7 @@
             style="padding-right: 15px; width: 50%; display: flex; flex-direction: column"
         >
             <!-- 生成操作区域 -->
-            <div
-                style="
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    margin: 5px 0 15px 0;
-                "
-            >
+            <div style="display: flex; justify-content: space-between; align-items: center; margin: 5px 0 15px 0">
                 <h1>{{ $t("demo.title") }}</h1>
                 <div style="display: flex; align-items: center">
                     <span style="padding-right: 10px">{{ $t("demo.inputLang") }}: </span>
@@ -62,10 +55,7 @@
         <div style="width: 20px"></div>
         <div id="right-wrap" style="width: 50%">
             <!-- 视频播放栏 -->
-            <div
-                class="wrap"
-                style="height: 90%; display: flex; align-items: center; justify-content: center"
-            >
+            <div class="wrap" style="height: 90%; display: flex; align-items: center; justify-content: center">
                 <video
                     v-if="videoUrl != undefined"
                     :src="videoUrl"
@@ -75,10 +65,7 @@
                 ></video>
             </div>
             <!-- 下载栏 -->
-            <div
-                class="wrap"
-                style="height: 8%; display: flex; align-items: center; justify-content: center"
-            >
+            <div class="wrap" style="height: 8%; display: flex; align-items: center; justify-content: center">
                 <span style="padding-right: 15px; color: #409eff">{{ $t("demo.download") }}:</span>
                 <el-button class="my-btn" @click="toDownload(ResultFileKind.Mp4)">
                     <el-icon><Download /></el-icon>
@@ -121,7 +108,7 @@ import BasicLayout from "../components/layout/Basic.vue";
 import { generate, download } from "../api/demo";
 import { messages } from "../utils/message";
 import { ResultFileKind } from "../utils/file";
-import { LanguageKind } from "../utils/language";
+import { LanguageKind, checkLanguage } from "../utils/language";
 
 export default {
     components: { BasicLayout, Download, ResultFileKind },
@@ -147,26 +134,22 @@ export default {
         async toGenerate() {
             const prompt = this.prompt.trim();
 
-            // 当输入语言不是中文，但是包括中文字符时验证
-            if (this.language != LanguageKind.CN && this.checkChinese(prompt)) {
-                const result = await ElMessageBox.alert(
-                    this.$t("demo.tipsForCNInput"),
-                    this.$t("demo.tips"),
-                    {
-                        showCancelButton: true,
-                        confirmButtonText: this.$t("btn.yes"),
-                        cancelButtonText: this.$t("btn.no"),
-                    }
-                )
+            if (prompt.length === 0) {
+                messages.promptIsEmpty();
+                return;
+            }
+
+            // 验证输入的语言与选择的语言是否匹配
+            if (!checkLanguage(prompt, this.language)) {
+                const result = await ElMessageBox.alert(this.$t("demo.tipsForCNInput"), this.$t("demo.tips"), {
+                    showCancelButton: true,
+                    confirmButtonText: this.$t("btn.yes"),
+                    cancelButtonText: this.$t("btn.no"),
+                })
                     .then(() => true)
                     .catch(() => false);
 
                 if (!result) return;
-            }
-
-            if (prompt.length === 0) {
-                messages.promptIsEmpty();
-                return;
             }
 
             this.isGenerating = true;
@@ -213,10 +196,6 @@ export default {
             document.body.appendChild(link);
             link.click();
             link.remove();
-        },
-
-        checkChinese(text: string) {
-            return /[\u4E00-\u9FA5]+/g.test(text);
         },
     },
 };
