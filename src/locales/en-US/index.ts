@@ -67,6 +67,9 @@ export default {
             "The character holds a katana in their right hand, runs quickly and charges, then uses a direct and powerful attack to thrust forward, and finally returns to a standing posture.",
             "The character wields an axe in their right hand and performs a jumping attack. They jump up, and as they land, they swing the axe forward with their right hand before returning to a standing position.",
         ],
+
+        supportedWeapon:
+            "Currently supported weapon action modal types include: Dagger, Greatsword, Katana, Curved Sword, Axe, Spear, Hammer, Fist.",
     },
 
     msg: {

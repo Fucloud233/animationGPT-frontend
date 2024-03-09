@@ -66,7 +66,7 @@
             </el-scrollbar>
 
             <p style="color: #409eff; margin: 10px 0">
-                目前可支持地武器动作模态类型： 匕首/大剑/太刀/曲剑/斧/载/锤/拳头
+                {{ $t("demo.supportedWeapon") }}
             </p>
         </div>
 
