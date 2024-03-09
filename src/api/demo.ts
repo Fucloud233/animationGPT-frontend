@@ -1,7 +1,8 @@
 import axios from "axios";
-import { postRequest, blob2Url } from "./utils";
+import { postRequest, blob2Url, getRequest } from "./utils";
 
 const VIDEO_TYPE = "video/mp4";
+const BVH_TYPE = "application/bvh";
 
 export async function generate(prompt: string, language: string) {
     let request = postRequest("/api/generate", {
@@ -21,6 +22,19 @@ export async function generate(prompt: string, language: string) {
         return {
             data: blobUrl,
             id: id,
+            flag: true,
+        };
+    });
+}
+
+export async function download(id: string) {
+    let requestBody = getRequest("/api/download", {
+        id: id,
+    });
+
+    return await axios(requestBody).then((resp) => {
+        return {
+            data: blob2Url(resp.data, BVH_TYPE),
             flag: true,
         };
     });

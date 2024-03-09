@@ -103,11 +103,11 @@
                 <span style="padding-right: 15px; color: #409eff"
                     >{{ $t("demo.download") }}:</span
                 >
-                <el-button class="my-btn">
+                <el-button class="my-btn" @click="toDownloadMP4()">
                     <el-icon><Download /></el-icon>
                     <span>mp4</span>
                 </el-button>
-                <el-button class="my-btn">
+                <el-button class="my-btn" @click="toDownloadBVH()">
                     <el-icon><Download /></el-icon>
                     <span>bvh</span>
                 </el-button>
@@ -122,7 +122,7 @@ import { Download } from "@element-plus/icons-vue";
 
 import BasicLayout from "../components/layout/Basic.vue";
 
-import { generate } from "../api/demo";
+import { generate, download } from "../api/demo";
 
 export default {
     components: { BasicLayout, Download },
@@ -134,8 +134,9 @@ export default {
 
             isGenerating: false,
 
+            // Notice: 当后台生成成功，二者都非 undefined，因此都可以判断生成情况
+            // 用于记录生成回来的视频 URL
             videoUrl: undefined as string | undefined,
-re
             // 用于计入当前的生成结果的id
             curId: undefined as string | undefined,
         };
@@ -154,9 +155,34 @@ re
             this.isGenerating = false;
         },
 
-        async toClear() {
+        toClear() {
             if (!this.isGenerating) this.videoUrl = undefined;
             this.prompt = "";
+            this.curId = undefined;
+        },
+
+        toDownloadMP4() {
+            if (this.videoUrl == undefined) return;
+
+            const filename = this.curId + ".mp4";
+            this.downloadFile(this.videoUrl, filename);
+        },
+        async toDownloadBVH() {
+            if (this.curId == undefined) return;
+            const filename = this.curId + ".bvh";
+
+            const result = await download(this.curId);
+
+            this.downloadFile(result.data, filename);
+        },
+        downloadFile(url: string, filename: string) {
+            const link = document.createElement("a");
+            link.href = url;
+            // 下载文件的名称及文件类型后缀
+            link.download = filename;
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
         },
     },
 };

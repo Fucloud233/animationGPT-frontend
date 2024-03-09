@@ -33,15 +33,15 @@ export function putRequest(apiUrl: string, data: any) {
     });
 }
 
-export function getRequest(apiUrl: string, params: any) {
-    return axios({
+export function getRequest(apiUrl: string, params: any): AxiosRequestConfig {
+    return {
         method: "get",
         url: apiUrl,
         params: params,
         headers: {
             "Content-Type": "application/json",
         },
-    });
+    };
 }
 
 export function getApiUrl(name: string) {
