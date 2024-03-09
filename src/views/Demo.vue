@@ -4,12 +4,7 @@
         <div
             id="operator-wrap"
             class="wrap"
-            style="
-                padding-right: 15px;
-                width: 50%;
-                display: flex;
-                flex-direction: column;
-            "
+            style="padding-right: 15px; width: 50%; display: flex; flex-direction: column"
         >
             <!-- 生成操作区域 -->
             <div
@@ -22,9 +17,7 @@
             >
                 <h1>{{ $t("demo.title") }}</h1>
                 <div style="display: flex; align-items: center">
-                    <span style="padding-right: 10px"
-                        >{{ $t("demo.inputLang") }}:
-                    </span>
+                    <span style="padding-right: 10px">{{ $t("demo.inputLang") }}: </span>
                     <el-radio-group v-model="language" size="small">
                         <el-radio-button label="cn">中</el-radio-button>
                         <el-radio-button label="en">En</el-radio-button>
@@ -44,11 +37,7 @@
                 <el-button @click="toClear()">
                     {{ $t("demo.clear") }}
                 </el-button>
-                <el-button
-                    type="primary"
-                    :loading="isGenerating"
-                    @click="toGenerate()"
-                >
+                <el-button type="primary" :loading="isGenerating" @click="toGenerate()">
                     {{ $t("demo.generate") }}</el-button
                 >
             </div>
@@ -75,12 +64,7 @@
             <!-- 视频播放栏 -->
             <div
                 class="wrap"
-                style="
-                    height: 90%;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                "
+                style="height: 90%; display: flex; align-items: center; justify-content: center"
             >
                 <video
                     v-if="videoUrl != undefined"
@@ -93,27 +77,14 @@
             <!-- 下载栏 -->
             <div
                 class="wrap"
-                style="
-                    height: 8%;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                "
+                style="height: 8%; display: flex; align-items: center; justify-content: center"
             >
-                <span style="padding-right: 15px; color: #409eff"
-                    >{{ $t("demo.download") }}:</span
-                >
-                <el-button
-                    class="my-btn"
-                    @click="toDownload(ResultFileKind.Mp4)"
-                >
+                <span style="padding-right: 15px; color: #409eff">{{ $t("demo.download") }}:</span>
+                <el-button class="my-btn" @click="toDownload(ResultFileKind.Mp4)">
                     <el-icon><Download /></el-icon>
                     <span>{{ ResultFileKind.Mp4 }}</span>
                 </el-button>
-                <el-button
-                    class="my-btn"
-                    @click="toDownload(ResultFileKind.Bvh)"
-                >
+                <el-button class="my-btn" @click="toDownload(ResultFileKind.Bvh)">
                     <el-icon><Download /></el-icon>
                     <span>{{ ResultFileKind.Bvh }}</span>
                 </el-button>
