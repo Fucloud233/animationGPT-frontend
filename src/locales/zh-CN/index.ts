@@ -57,6 +57,10 @@ export default {
 
         download: "下载",
 
+        tips: "提示",
+        tipsForCNInput:
+            "您选择了英文作为输入语言，却输入了中文。这可能导致生成结果错误，您确定要继续吗？",
+
         examples: [
             "角色双手自然下垂于身体两侧，身体重心稍微下压，向左缓慢移动。",
             "角色轻盈地向前跑动。",
@@ -78,5 +82,10 @@ export default {
 
         promptIsEmpty: "请输入提示词",
         motionNotGenerated: "动作尚未生成，请先生成",
+    },
+
+    btn: {
+        yes: "是",
+        no: "否",
     },
 };

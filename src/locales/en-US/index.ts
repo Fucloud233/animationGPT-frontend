@@ -57,6 +57,10 @@ export default {
 
         download: "Download",
 
+        tips: "Tips",
+        tipsForCNInput:
+            "You inputted in Chinese, but selected English instead, which may generate incorrectly. Do you want to continue?",
+
         examples: [
             "The character's hands hang naturally at the sides of their body, their body's center of gravity slightly lowered, and they move slowly to the left.",
             "The character runs forward lightly.",
@@ -78,5 +82,10 @@ export default {
 
         promptIsEmpty: "Please input prompt",
         motionNotGenerated: "Motion hasn't been Generated",
+    },
+
+    btn: {
+        yes: "Yes",
+        no: "No",
     },
 };

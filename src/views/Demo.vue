@@ -121,26 +121,47 @@
         </div>
         <!-- header -->
     </div>
+
+    <el-dialog v-model="showDialog" title="Tips" width="500">
+        <span>This is a message</span>
+        <template #footer>
+            <div class="dialog-footer">
+                <el-button @click="showDialog = false">Cancel</el-button>
+                <el-button
+                    type="primary"
+                    @click="
+                        showDialog = false;
+                        toGenerate();
+                    "
+                >
+                    Confirm
+                </el-button>
+            </div>
+        </template>
+    </el-dialog>
 </template>
 
 <script lang="ts">
 import { Download } from "@element-plus/icons-vue";
+import { ElMessageBox } from "element-plus";
 
 import BasicLayout from "../components/layout/Basic.vue";
 
 import { generate, download } from "../api/demo";
 import { messages } from "../utils/message";
 import { ResultFileKind } from "../utils/file";
+import { LanguageKind } from "../utils/language";
 
 export default {
     components: { BasicLayout, Download, ResultFileKind },
     data() {
         return {
-            language: "en",
+            language: LanguageKind.EN,
 
             prompt: "Please create a motion that represents the power of the figure takes a few slighly hurried steps without raising their arms, it looks they are about to start running but haven't quite yet begun. to create a better world for all." as String,
 
             isGenerating: false,
+            showDialog: false,
 
             // Notice: 当后台生成成功，二者都非 undefined，因此都可以判断生成情况
             // 生成结果的 视频连接 与 会话 id
@@ -154,6 +175,24 @@ export default {
     methods: {
         async toGenerate() {
             const prompt = this.prompt.trim();
+
+            // 当输入语言不是中文，但是包括中文字符时验证
+            if (this.language != LanguageKind.CN && this.checkChinese(prompt)) {
+                const result = await ElMessageBox.alert(
+                    this.$t("demo.tipsForCNInput"),
+                    this.$t("demo.tips"),
+                    {
+                        showCancelButton: true,
+                        confirmButtonText: this.$t("btn.yes"),
+                        cancelButtonText: this.$t("btn.no"),
+                    }
+                )
+                    .then(() => true)
+                    .catch(() => false);
+
+                if (!result) return;
+            }
+
             if (prompt.length === 0) {
                 messages.promptIsEmpty();
                 return;
@@ -203,6 +242,10 @@ export default {
             document.body.appendChild(link);
             link.click();
             link.remove();
+        },
+
+        checkChinese(text: string) {
+            return /[\u4E00-\u9FA5]+/g.test(text);
         },
     },
 };
