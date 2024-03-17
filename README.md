@@ -1,18 +1,34 @@
-# Vue 3 + TypeScript + Vite
+# AnimationGPT
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## 配置说明
 
-## Recommended IDE Setup
+当使用 `npm run build` 命令将本项目文件转换为静态文件，
+并使用 nginx 部署时，需要在 nginx 中配置以下内容。
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+```
+server {
+   # 监听端口
+   listen 8080;
+   # 项目所在文件路径
+   root /usr/share/nginx/html;
 
-## Type Support For `.vue` Imports in TS
+   # 以下是为 vue-router 进行配置
+   location / {
+      try_files $uri $uri/ @router;
+      index index.html;
+   }
+   location @router {
+      rewrite ^.*$ /index.html last;
+   }
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+   # 以下是为后端服务器镜像进行配置
+   location /api {
+      proxy_pass  http://127.0.0.1:8082/;
+      proxy_redirect off;
+      proxy_set_header Host $host;
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+   }
+}
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+```
