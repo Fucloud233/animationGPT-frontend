@@ -25,7 +25,7 @@ const router = createRouter({
     routes: routes,
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach((to, _from, next) => {
     let lang = to.params.lang;
 
     if (typeof lang == "string") {
