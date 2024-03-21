@@ -1,3 +1,3 @@
 window.config = {
-    demoOk: false,
+    demoOk: true,
 };
