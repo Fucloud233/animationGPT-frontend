@@ -1,6 +1,18 @@
 # AnimationGPT
 
+本仓库是 AnimationGPT 的前端部分，
+使用 Vue3 和 Element 编写了用于介绍和运行 Demo 的页面。
+
+后端部分：[animationGPT-backend](https://github.com/Fucloud233/animationGPT-backend)
+
 ## 配置说明
+
+### 端口配置
+
+-   前端 Port: `8080`
+-   后端 Port: `8082`
+
+### Nginx 配置
 
 当使用 `npm run build` 命令将本项目文件转换为静态文件，
 并使用 nginx 部署时，需要在 nginx 中配置以下内容。
