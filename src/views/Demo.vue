@@ -113,8 +113,10 @@ import { LanguageKind, checkLanguage } from "../utils/language";
 export default {
     components: { BasicLayout, Download, ResultFileKind },
     data() {
+        const isEnglish = this.$i18n.locale == "enUS";
+
         return {
-            language: LanguageKind.CN,
+            language: isEnglish ? LanguageKind.EN : LanguageKind.CN,
 
             prompt: (this.$tm("demo.examples") as [string])[0],
 
