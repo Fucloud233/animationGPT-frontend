@@ -130,6 +130,15 @@ export default {
             ResultFileKind: ResultFileKind,
         };
     },
+    mounted() {
+        // 可以手动设置是否可以使用 Demo 运行
+        if (window.config.demoOk) return;
+
+        ElMessageBox.alert(this.$t("demo.tipsForDemoNotOK"), this.$t("demo.tips"), {
+            confirmButtonText: this.$t("btn.yes"),
+            showClose: false,
+        }).then(() => this.$router.push("/"));
+    },
     methods: {
         async toGenerate() {
             const prompt = this.prompt.trim();

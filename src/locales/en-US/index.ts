@@ -61,6 +61,8 @@ export default {
         tipsForCNInput:
             "The language of prompt you entered doesn't match what you selected, which may lead to incorrect generation. Do you want to continue?",
 
+        tipsForDemoNotOK: "Sorry, this demo is unavailable now.",
+
         examples: [
             "The character's hands hang naturally at the sides of their body, their body's center of gravity slightly lowered, and they move slowly to the left.",
             "The character runs forward lightly.",

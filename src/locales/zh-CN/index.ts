@@ -60,6 +60,8 @@ export default {
         tips: "提示",
         tipsForCNInput: "您输入的提示词语言与您选择的不匹配。这可能导致生成结果错误，您确定要继续吗？",
 
+        tipsForDemoNotOK: "抱歉，Demo 程序现在不可用。",
+
         examples: [
             "角色双手自然下垂于身体两侧，身体重心稍微下压，向左缓慢移动。",
             "角色轻盈地向前跑动。",

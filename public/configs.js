@@ -1,0 +1,3 @@
+window.config = {
+    demoOk: false,
+};
