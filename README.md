@@ -7,12 +7,7 @@
 
 ## 配置说明
 
-### 端口配置
-
--   前端 Port: `8080`
--   后端 Port: `8082`
-
-### Nginx 配置
+### 1. Nginx 配置
 
 当使用 `npm run build` 命令将本项目文件转换为静态文件，
 并使用 nginx 部署时，需要在 nginx 中配置以下内容。
@@ -48,4 +43,15 @@ server {
    }
 }
 
+```
+
+### 2. 网页配置
+
+本项目提供配置文件可以动态开关使用 Demo 页面，
+在项目成功打包后，可以通过修改 `config.js` 来控制相关配置。
+
+```javascript
+window.config = {
+    demoOk: false,
+};
 ```
