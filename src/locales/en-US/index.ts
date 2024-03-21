@@ -84,6 +84,7 @@ export default {
 
         promptIsEmpty: "Please input prompt",
         motionNotGenerated: "Motion hasn't been Generated",
+        translateError: "Input in Chinese error, please use English.",
     },
 
     btn: {

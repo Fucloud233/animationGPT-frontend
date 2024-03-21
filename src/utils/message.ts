@@ -29,4 +29,5 @@ export const messages = {
 
     motionNotGenerated: () => newErrorMsg(t("msg.motionNotGenerated")),
     generateError: () => newErrorMsg(t("msg.generateError")),
+    translateError: () => newErrorMsg(t("msg.translateError")),
 };

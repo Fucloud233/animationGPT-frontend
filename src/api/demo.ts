@@ -13,18 +13,35 @@ export async function generate(prompt: string, language: string) {
     // Notice: 需要设定 ResponseType -> Blob
     request.responseType = "blob";
 
-    return await axios(request).then((resp) => {
-        const blobUrl = blob2Url(resp.data, VIDEO_TYPE);
+    return await axios(request)
+        .then((resp) => {
+            const blobUrl = blob2Url(resp.data, VIDEO_TYPE);
 
-        // 响应头的文件名，也是该prompt对应的API
-        const id = extractFileName(resp.headers["content-disposition"]);
+            // 响应头的文件名，也是该prompt对应的API
+            const id = extractFileName(resp.headers["content-disposition"]);
 
-        return {
-            data: blobUrl,
-            id: id,
-            flag: true,
-        };
-    });
+            return {
+                data: {
+                    url: blobUrl,
+                    id: id,
+                },
+            };
+        })
+        .catch((err) => {
+            const resp = err.response;
+            const result = {
+                data: undefined,
+                translateError: false,
+            };
+
+            // 如果返回的状态码是500, 且存在数据，则说明发生翻译错误
+            // 详情可见后端代码中的 API
+            if (resp.status == 500 && (resp.data as Blob).size != 0) {
+                result.translateError = true;
+            }
+
+            return result;
+        });
 }
 
 export async function download(id: string) {

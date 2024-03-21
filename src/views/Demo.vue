@@ -30,7 +30,7 @@
                 <el-button @click="toClear()">
                     {{ $t("demo.clear") }}
                 </el-button>
-                <el-button type="primary" :loading="isGenerating" @click="toGenerate()">
+                <el-button type="primary" :loading="isGenerating" @click="toGenerate()" :disabled="!demoOk">
                     {{ $t("demo.generate") }}</el-button
                 >
             </div>
@@ -67,11 +67,11 @@
             <!-- 下载栏 -->
             <div class="wrap" style="height: 8%; display: flex; align-items: center; justify-content: center">
                 <span style="padding-right: 15px; color: #409eff">{{ $t("demo.download") }}:</span>
-                <el-button class="my-btn" @click="toDownload(ResultFileKind.Mp4)">
+                <el-button class="my-btn" @click="toDownload(ResultFileKind.Mp4)" :disabled="!demoOk">
                     <el-icon><Download /></el-icon>
                     <span>{{ ResultFileKind.Mp4 }}</span>
                 </el-button>
-                <el-button class="my-btn" @click="toDownload(ResultFileKind.Bvh)">
+                <el-button class="my-btn" @click="toDownload(ResultFileKind.Bvh)" :disabled="!demoOk">
                     <el-icon><Download /></el-icon>
                     <span>{{ ResultFileKind.Bvh }}</span>
                 </el-button>
@@ -114,9 +114,11 @@ export default {
     components: { BasicLayout, Download, ResultFileKind },
     data() {
         return {
-            language: LanguageKind.EN,
+            language: LanguageKind.CN,
 
-            prompt: "Please create a motion that represents the power of the figure takes a few slighly hurried steps without raising their arms, it looks they are about to start running but haven't quite yet begun. to create a better world for all." as String,
+            prompt: (this.$tm("demo.examples") as [string])[0],
+
+            demoOk: window.config.demoOk,
 
             isGenerating: false,
             showDialog: false,
@@ -164,12 +166,16 @@ export default {
             this.isGenerating = true;
 
             let result = await generate(prompt, this.language);
-            this.videoUrl = result.data as string;
-            this.curId = result.id;
+
+            if (result.data != undefined) {
+                this.videoUrl = result.data.url as string;
+                this.curId = result.data.url;
+
+                messages.generateSuccess();
+            } else if (result.translateError) messages.translateError();
+            else messages.generateError();
 
             this.isGenerating = false;
-
-            messages.generateSuccess();
         },
 
         toClear() {
