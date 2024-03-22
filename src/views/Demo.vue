@@ -171,7 +171,7 @@ export default {
 
             if (result.data != undefined) {
                 this.videoUrl = result.data.url as string;
-                this.curId = result.data.url;
+                this.curId = result.data.id;
 
                 messages.generateSuccess();
             } else if (result.translateError) messages.translateError();
