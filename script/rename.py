@@ -15,7 +15,7 @@ def rename():
 
     data = pd.read_csv(filename).to_dict()
 
-    names = [name for name in data['ID'].values()]
+    names = [name for name in data['id'].values()]
 
     kinds = [
         # "OriginalSMPL",
@@ -31,9 +31,11 @@ def rename():
 
     format = "gif"
 
-    reverse = True
+    reverse = False
 
     for kind in kinds:
+        count = 0
+
         for (i, name) in enumerate(names):
             folder_name = f"./gif/{kind}/"
 
@@ -45,7 +47,7 @@ def rename():
                 
             index_name = "%02d.%s"%(i, format)
             id_name =  f"{name}.{format}"
-                
+
             try:
                 if reverse:
                     path = Path(folder_name + index_name)
@@ -53,9 +55,11 @@ def rename():
                 else: 
                     path = Path(folder_name + id_name)
                     path.rename(folder_name + index_name)
+                count += 1
             except:
                 pass
-
+        
+        print(f"{kind}: {count}")
             
 
 # 将 csv 文件转换为 json 文件
