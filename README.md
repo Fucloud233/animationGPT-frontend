@@ -47,11 +47,21 @@ server {
 
 ### 2. 网页配置
 
-本项目提供配置文件可以动态开关使用 Demo 页面，
-在项目成功打包后，可以通过修改 `config.js` 来控制相关配置。
+本项目还提供了配置文件，允许项目被打包成动态文件后动态地修改网页内容配置。
+
+1. `demoOK`: 控制 Demo 页面的启用
+2. `examples`: 设置示例文件名、显示标签和数量。
+    > 网页会从`assets/examples/{kind}`目录下寻找对应的示例文件
 
 ```javascript
+// config.js
+
 window.config = {
     demoOk: false,
+    examples: {
+        kindList: [],
+        kindLabelList: [],
+        size: 20,
+    },
 };
 ```
