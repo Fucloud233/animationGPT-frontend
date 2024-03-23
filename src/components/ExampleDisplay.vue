@@ -119,7 +119,7 @@ export default {
 
             // 更新示例图片URL
             for (let example of this.examples) {
-                let name = `example/${example.value}/${this.formatId(i)}`;
+                let name = `examples/${example.value}/${this.formatId(i)}`;
                 example.url = getGifUrl(name);
             }
 
