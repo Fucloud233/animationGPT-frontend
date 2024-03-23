@@ -23,5 +23,7 @@ dist-ssr
 *.sln
 *.sw?
 
-src/assets/example/
+# 打包后的信息
+src/assets/examples/
+src/assets/examples.zip
 html.zip
