@@ -6,7 +6,7 @@
                 <el-icon><ArrowLeft /></el-icon>
             </el-button>
             <div class="examples-wrap" ref="examplesRef">
-                <div v-for="i in Array(30).keys()" class="example-id-wrap">
+                <div v-for="i in Array(examplesSize).keys()" class="example-id-wrap">
                     <!-- 按钮点击切换视频 -->
                     <el-button
                         :style="{
@@ -36,8 +36,8 @@
                     v-loading="isLoadingExample"
                     class="example-video"
                     :style="{
-                        'min-height': exampleVideoSize,
-                        'min-width': exampleVideoSize,
+                        height: exampleVideoSize,
+                        width: exampleVideoSize,
                     }"
                 >
                     <img
@@ -65,8 +65,10 @@ export default {
 
     data() {
         // 需要展示的类型
-        const kindList = ["OriginalSMPL", "Original", "S4-50", "S4-70"];
-        const kindLabelList = ["Original SMPL", "Original", "S4-50%", "S4-70%"];
+        const examplesConfig = window.config.examples;
+
+        const kindList = examplesConfig.kindList;
+        const kindLabelList = examplesConfig.kindLabelList;
         const defaultId = 0;
 
         let examples = [] as { value: string; label: string; url: string }[];
@@ -81,6 +83,7 @@ export default {
         return {
             selectId: defaultId,
             examples: examples,
+            examplesSize: examplesConfig.size,
 
             // 图片加载状态
             isLoadingExample: false,
