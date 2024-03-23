@@ -38,8 +38,9 @@ server {
    }
 
    # 配置静态文件访问
-   location /assets {
-      alias /usr/share/nginx/html/assets;
+   # 注意: 不要将静态文件放置到 html 目录内，会直接被覆盖
+   location ^~ /assets/examples {
+      alias /usr/share/nginx/examples;
    }
 }
 
