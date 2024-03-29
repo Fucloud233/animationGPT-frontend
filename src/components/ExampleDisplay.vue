@@ -28,10 +28,16 @@
         <p id="prompt">{{ $t("introduce.prompt") }}: {{ curPrompt }}</p>
 
         <!-- 3. 显示视频播放-->
-        <div style="display: flex; justify-content: space-between" ref="examples">
+        <div style="display: flex; flex-direction: column" ref="examples">
             <!-- 根据examples数量动态控制 -->
-            <div class="example-wrap" v-for="example in examples">
-                <div class="kind-wrap">{{ example.label }}</div>
+            <!-- 标题栏单独一行，视频显示单独一行 -->
+            <div class="example-wrap" style="margin-bottom: 15px">
+                <div class="kind-wrap" :style="{ width: exampleVideoSize }" v-for="example in examples">
+                    <span>{{ example.label }}</span>
+                </div>
+            </div>
+
+            <div class="example-wrap">
                 <div
                     v-loading="isLoadingExample"
                     class="example-video"
@@ -39,6 +45,7 @@
                         height: exampleVideoSize,
                         width: exampleVideoSize,
                     }"
+                    v-for="example in examples"
                 >
                     <img
                         :src="example.url"
@@ -192,19 +199,20 @@ export default {
 }
 .example-wrap {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .kind-wrap {
     background-color: #f0f0f0;
     padding: 10px 10px;
-    width: 100%;
-    margin-bottom: 15px;
-    font-size: 16px;
     text-align: center;
-
     box-sizing: border-box;
+
+    /* 设置内部文字垂直对齐 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 .example-video {
     width: 100%;
