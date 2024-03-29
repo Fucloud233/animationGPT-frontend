@@ -12,7 +12,7 @@ declare interface ExamplesConfig {
     urls: {
         agpt: [string];
         agpt_plus: [string];
-        mdn: [string];
+        mdm: [string];
         mgpt: [string];
         mld: [string];
     };

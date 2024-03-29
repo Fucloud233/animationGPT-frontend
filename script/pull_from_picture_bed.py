@@ -2,13 +2,11 @@ import requests
 import json
 
 URL = 'https://api.superbed.cn/timeline'
-TOKEN = ''
-
 
 kinds = [
     "agpt",
     "agpt_plus",
-    "mdn",
+    "mdm",
     "mgpt",
     "mld"
 ]
@@ -34,14 +32,17 @@ def pull(token):
             print("requests error")
             break
         
-        data = json.loads(resp.content.decode('utf-8'))['docs']
+        data = json.loads(resp.content.decode('utf-8'))
 
-        for d in data:
+        print(f"{kind}: {data['total']}")
+
+        for d in data['docs']:
             i = int(d['filename'].split('.')[0])
             sub_result[i] = d['url']
 
 
         result[kind] = sub_result
+
     
     return result
 
