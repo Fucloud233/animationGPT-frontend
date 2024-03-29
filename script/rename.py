@@ -24,12 +24,12 @@ def rename():
         # "S4-70"
         "agpt",
         "agpt_plus",
-        "mdn",
+        "mdm",
         "mgpt",
         "mld"
         ]
 
-    format = "gif"
+    format = "mp4"
 
     reverse = False
 
@@ -37,7 +37,7 @@ def rename():
         count = 0
 
         for (i, name) in enumerate(names):
-            folder_name = f"./gif/{kind}/"
+            folder_name = f"./examples/{kind}/"
 
             # 特殊处理
             if kind == "Original":

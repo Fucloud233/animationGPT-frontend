@@ -2,7 +2,7 @@ window.config = {
     demoOk: true,
 
     examples: {
-        kindList: ["agpt", "mgpt", "mld", "mdn"],
+        kindList: ["agpt_plus", "agpt", "mgpt", "mld", "mdm"],
         kindLabelList: [
             "AGPT\n(Retarget and Fixed Fingers)",
             "AGPT",
