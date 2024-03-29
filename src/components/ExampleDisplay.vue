@@ -47,13 +47,24 @@
                     }"
                     v-for="example in examples"
                 >
-                    <img
+                    <video
+                        :src="example.url"
+                        @loadeddata="loadExample()"
+                        ref="exampleVideo"
+                        :width="exampleVideoSize"
+                        v-show="!isLoadingExample"
+                        :autoplay="true"
+                        :loop="true"
+                        :muted="true"
+                    />
+                    <!-- 使用 mp4 播放 -->
+                    <!-- <img
                         :src="example.url"
                         @load="loadExample()"
                         ref="exampleVideo"
                         :width="exampleVideoSize"
                         v-show="!isLoadingExample"
-                    />
+                    /> -->
                 </div>
             </div>
         </div>
@@ -62,7 +73,7 @@
 
 <script lang="ts">
 import { ArrowLeft, ArrowRight } from "@element-plus/icons-vue";
-import { getGifUrl } from "../utils";
+import { getMp4Url } from "../utils";
 
 export default {
     components: {
@@ -127,7 +138,7 @@ export default {
             // 更新示例图片URL
             for (let example of this.examples) {
                 let name = `examples/${example.value}/${this.formatId(i)}`;
-                example.url = getGifUrl(name);
+                example.url = getMp4Url(name);
             }
 
             this.isLoadingExample = true;
