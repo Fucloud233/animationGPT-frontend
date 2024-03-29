@@ -47,24 +47,24 @@
                     }"
                     v-for="example in examples"
                 >
-                    <video
+                    <!-- <video
                         :src="example.url"
-                        @loadeddata="loadExample()"
+                        @canplaythrough="loadExample()"
                         ref="exampleVideo"
                         :width="exampleVideoSize"
                         v-show="!isLoadingExample"
                         :autoplay="true"
                         :loop="true"
                         :muted="true"
-                    />
+                    /> -->
                     <!-- 使用 mp4 播放 -->
-                    <!-- <img
+                    <img
                         :src="example.url"
                         @load="loadExample()"
                         ref="exampleVideo"
                         :width="exampleVideoSize"
                         v-show="!isLoadingExample"
-                    /> -->
+                    />
                 </div>
             </div>
         </div>
@@ -73,7 +73,7 @@
 
 <script lang="ts">
 import { ArrowLeft, ArrowRight } from "@element-plus/icons-vue";
-import { getMp4Url } from "../utils";
+import { getUrlFromPicBed } from "../utils";
 
 export default {
     components: {
@@ -137,8 +137,9 @@ export default {
 
             // 更新示例图片URL
             for (let example of this.examples) {
-                let name = `examples/${example.value}/${this.formatId(i)}`;
-                example.url = getMp4Url(name);
+                // let name = `examples/${example.value}/${this.formatId(i)}`;
+                // example.url = getWebpUrl(name);
+                example.url = getUrlFromPicBed(example.value, i);
             }
 
             this.isLoadingExample = true;
