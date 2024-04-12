@@ -15,6 +15,11 @@ var routes = [
         component: () => import("../views/Introduce.vue"),
     },
     {
+        path: "/:lang/article",
+        name: "article",
+        component: () => import ("../views/Article.vue"),
+    },
+    {
         path: "/",
         redirect: "/enUS/",
     },

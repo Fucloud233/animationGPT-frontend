@@ -67,13 +67,13 @@ export default {
                         this.$router.push({ name: "demo" });
                     },
                 },
-                // {
-                //     name: "article",
-                //     label: "Article",
-                //     action: () => {
-                //         window.location.href = "https://www.zhihu.com/";
-                //     },
-                // },
+                {
+                    name: "article",
+                    label: "Article",
+                    action: () => {
+                        this.$router.push({ name: "article" });
+                    },
+                },
                 {
                     name: "github",
                     label: "Github",
