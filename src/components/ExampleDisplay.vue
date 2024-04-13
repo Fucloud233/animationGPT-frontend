@@ -1,28 +1,6 @@
 <template>
     <div>
-        <!-- 1. example的选择条 -->
-        <div class="select-bar">
-            <el-button @click="scroll(true)" text style="margin-right: 15px">
-                <el-icon><ArrowLeft /></el-icon>
-            </el-button>
-            <div class="examples-wrap" ref="examplesRef">
-                <div v-for="i in Array(examplesSize).keys()" class="example-id-wrap">
-                    <!-- 按钮点击切换视频 -->
-                    <el-button
-                        :style="{
-                            color: i == selectId ? '#409eff' : 'gray',
-                        }"
-                        @click="changeExample(i)"
-                        link
-                    >
-                        Example {{ formatId(i + 1) }}
-                    </el-button>
-                </div>
-            </div>
-            <el-button @click="scroll(false)" text style="margin-left: 15px">
-                <el-icon><ArrowRight /></el-icon>
-            </el-button>
-        </div>
+        <SelectBar :size="examplesSize" :onchange="changeExample"></SelectBar>
 
         <!-- 2. Prompt文本-->
         <p id="prompt">{{ $t("introduce.prompt") }}: {{ curPrompt }}</p>
@@ -72,13 +50,13 @@
 </template>
 
 <script lang="ts">
-import { ArrowLeft, ArrowRight } from "@element-plus/icons-vue";
 import { getUrlFromPicBed } from "../utils";
+
+import SelectBar from "./SelectBar.vue";
 
 export default {
     components: {
-        ArrowLeft,
-        ArrowRight,
+        SelectBar,
     },
 
     data() {
@@ -115,9 +93,9 @@ export default {
         this.updateExampleVideoSize();
 
         // 动态修改视频的宽度
-        window.onresize = () => {
+        window.addEventListener("resize", () => {
             this.updateExampleVideoSize();
-        };
+        });
     },
     computed: {
         curPrompt() {
@@ -154,54 +132,11 @@ export default {
                 this.exampleLoadCount = 0;
             }
         },
-        formatId(id: number) {
-            if (id < 10) {
-                return "0" + id;
-            } else {
-                return id;
-            }
-        },
-        scroll(isLeft: boolean) {
-            // 使用总宽度来控制左右滑动的距离
-            const div = this.$refs.examplesRef as HTMLDivElement;
-
-            let step = div.clientWidth;
-            if (isLeft) {
-                step = -step;
-            }
-
-            if (div != undefined) {
-                div.scrollLeft += step;
-            }
-        },
     },
 };
 </script>
 
 <style scoped>
-.select-bar {
-    display: flex;
-    padding: 8px 0 8px 0;
-    border-top: 1.5px solid #409eff;
-    border-bottom: 1.5px solid #409eff;
-}
-.examples-wrap {
-    display: flex;
-    flex-direction: row;
-
-    overflow-x: hidden;
-}
-.example-id-wrap {
-    display: flex;
-    align-items: center;
-
-    /* 设置不换行 */
-    white-space: nowrap;
-
-    padding: 0 20px;
-    box-sizing: border-box;
-}
-
 #prompt {
     text-align: center;
     font-size: 20px;
