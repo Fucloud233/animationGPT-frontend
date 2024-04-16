@@ -8,6 +8,7 @@ export default {
 
         our: "我们的",
         method: "方法",
+        dataset: "数据集",
 
         prompt: "提示词",
 

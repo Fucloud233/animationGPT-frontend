@@ -4,8 +4,7 @@ declare interface Config {
     demoOk: boolean;
     defaultLang: "enUS" | "zhCN";
 
-    articleUrl: string;
-
+    introduce: IntroduceConfig;
     examples: ExamplesConfig;
 }
 
@@ -20,6 +19,12 @@ declare interface ExamplesConfig {
         mgpt: [string];
         mld: [string];
     };
+}
+
+declare interface IntroduceConfig {
+    articleUrl: string;
+    cid: string | undefined;
+    bvid: string;
 }
 
 declare interface Window {

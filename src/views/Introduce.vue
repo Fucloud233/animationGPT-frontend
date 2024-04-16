@@ -41,6 +41,10 @@
         </p>
         <el-image :src="methodUrl"></el-image>
 
+        <SubTitle :top="$t('introduce.our')" :bottom="$t('introduce.dataset')"></SubTitle>
+
+        <BilibiliVideo :bvid="bvid" :cid="cid" />
+
         <el-divider></el-divider>
     </div>
 </template>
@@ -49,14 +53,18 @@
 import SvgIcon from "../components/SvgIcon.vue";
 import SubTitle from "../components/SubTitle.vue";
 import ExampleDisplay from "../components/ExampleDisplay.vue";
+import BilibiliVideo from "../components/BilibiliVideo.vue";
 
 export default {
     components: {
         SvgIcon,
         SubTitle,
         ExampleDisplay,
+        BilibiliVideo,
     },
     data() {
+        const config = window.config.introduce;
+
         return {
             methodUrl: new URL(`../assets/test/method.png`, import.meta.url).href,
             routers: [
@@ -72,7 +80,7 @@ export default {
                     label: "Article",
                     action: () => {
                         // this.$router.push({ name: "article" });
-                        window.location.href = window.config.articleUrl;
+                        window.location.href = config.articleUrl;
                     },
                 },
                 {
@@ -83,6 +91,9 @@ export default {
                     },
                 },
             ],
+
+            cid: config.cid,
+            bvid: config.bvid,
         };
     },
 };

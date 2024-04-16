@@ -8,6 +8,7 @@ export default {
 
         our: "Our",
         method: "Method",
+        dataset: "Dataset",
 
         prompt: "Prompt",
 
