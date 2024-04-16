@@ -1,15 +1,23 @@
 window.config = {
+    // 开关 Demo 页面的使用
     demoOk: true,
 
     // 网页默认语言设置：enUS/zhCN
     defaultLang: "enUS",
+
+    // 介绍页面的配置
     introduce: {
+        // 跳转的文章连接
         articleUrl: "https://zhuanlan.zhihu.com/p/691984079",
+        // 视频的 bv 号
         bvid: "BV14b411w7La",
+        // 视频的客户端 id
         cid: "",
     },
 
+    // 用于示例显示的配置
     examples: {
+        // 示例的类型、对应标签、数量、示例图片链接
         kindList: ["agpt_plus", "agpt", "mgpt", "mld", "mdm"],
         kindLabelList: [
             "AGPT\n(Retarget and Fixed Fingers)",
