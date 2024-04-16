@@ -50,7 +50,7 @@
 </template>
 
 <script lang="ts">
-import { getUrlFromPicBed } from "../utils";
+import { getUrlFromPicBed } from "../../utils";
 
 import SelectBar from "./SelectBar.vue";
 
