@@ -9,13 +9,13 @@
             <!-- 生成操作区域 -->
             <div style="display: flex; justify-content: space-between; align-items: center; margin: 5px 0 15px 0">
                 <h1>{{ $t("demo.title") }}</h1>
-                <div style="display: flex; align-items: center">
+                <!-- <div style="display: flex; align-items: center">
                     <span style="padding-right: 10px">{{ $t("demo.inputLang") }}: </span>
                     <el-radio-group v-model="language" size="small">
                         <el-radio-button label="cn">中</el-radio-button>
                         <el-radio-button label="en">En</el-radio-button>
                     </el-radio-group>
-                </div>
+                </div> -->
             </div>
 
             <el-input
@@ -113,12 +113,13 @@ import { LanguageKind, checkLanguage } from "../utils/language";
 export default {
     components: { BasicLayout, Download, ResultFileKind },
     data() {
-        const isEnglish = this.$i18n.locale == "enUS";
+        // const isEnglish = this.$i18n.locale == "enUS";
 
         return {
-            language: isEnglish ? LanguageKind.EN : LanguageKind.CN,
+            // language: isEnglish ? LanguageKind.EN : LanguageKind.CN,
+            language: LanguageKind.EN,
 
-            prompt: (this.$tm("demo.examples") as [string])[0],
+            prompt: "",
 
             demoOk: window.config.demoOk,
 
@@ -165,6 +166,7 @@ export default {
                 if (!result) return;
             }
 
+            // 调用 API 生成动画
             this.isGenerating = true;
 
             let result = await generate(prompt, this.language);

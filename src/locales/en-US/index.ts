@@ -58,7 +58,7 @@ export default {
 
         tips: "Tips",
         tipsForCNInput:
-            "The language of prompt you entered doesn't match what you selected, which may lead to incorrect generation. Do you want to continue?",
+            "This demo only supports English input now. Entering Chinese may lead to incorrect generation. Do you want to continue?",
 
         tipsForDemoNotOK: "Sorry, this demo is unavailable now.",
 

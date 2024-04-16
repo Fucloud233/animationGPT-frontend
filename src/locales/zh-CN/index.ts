@@ -48,7 +48,7 @@ export default {
         title: "动作生成",
 
         inputLang: "输入语言",
-        inputPlaceHolder: "请输入提示词以生成动作...",
+        inputPlaceHolder: "请使用英文输入提示词以生成动作...",
         refExample: "参考示例",
 
         clear: "清除",
@@ -57,19 +57,20 @@ export default {
         download: "下载",
 
         tips: "提示",
-        tipsForCNInput: "您输入的提示词语言与您选择的不匹配。这可能导致生成结果错误，您确定要继续吗？",
+        tipsForCNInput: "目前本 Demo 仅支持英文输入，输入中文可能会导致生成结果错误，您确定要继续吗？",
 
         tipsForDemoNotOK: "抱歉，Demo 程序现在不可用。",
 
+        // 因为只能通过英文输入，所以此处仍使用英文示例
         examples: [
-            "角色双手自然下垂于身体两侧，身体重心稍微下压，向左缓慢移动。",
-            "角色轻盈地向前跑动。",
-            "角色轻盈地向前方翻滚，快速地起身。",
-            "角色受击，身体大硬直，均速起身，惊慌失措地身体失衡向后退，右手挥舞在空中。",
-            "角色右手持大剑或特大剑，蓄力重击。角色双腿半蹲，上半身微微向右侧侧身，紧接着向前劈砍。最后回到原始站立姿势。",
-            "角色双手各持曲剑和大曲剑，在回旋挥刀后恢复站姿。",
-            "角色右手持太刀，快速奔跑并蓄力，然后使用直截了当的力量感向前刺击，最后恢复站姿。",
-            "角色右手持斧，以跳跃的方式进行攻击。角色跃起，同时落地时右手向前劈砍，然后起身恢复站姿。",
+            "The character's hands hang naturally at the sides of their body, their body's center of gravity slightly lowered, and they move slowly to the left.",
+            "The character runs forward lightly.",
+            "The character rolls forward lightly and quickly gets up.",
+            "The character is hit, their body goes into large stagger, and they get up at a moderate speed. They stagger in panic, leaning backward, while swinging their right arm in the air.",
+            "The character holds a greatsword or ultra greatsword in their right hand and performs a charged heavy attack. They squat halfway, lean slightly to the right side with their upper body, and then swing the sword forward. Finally, they return to the original standing posture.",
+            "The character wields a curved sword and a large curved sword in each hand, and swings the swords in rotation before returning to a standing posture.",
+            "The character holds a katana in their right hand, runs quickly and charges, then uses a direct and powerful attack to thrust forward, and finally returns to a standing posture.",
+            "The character wields an axe in their right hand and performs a jumping attack. They jump up, and as they land, they swing the axe forward with their right hand before returning to a standing position.",
         ],
 
         supportedWeapon: "目前可支持地武器动作模态类型： 匕首/大剑/太刀/曲剑/斧/载/锤/拳头",
