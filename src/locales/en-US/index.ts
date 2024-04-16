@@ -31,8 +31,8 @@ export default {
             "The character utilizes a technique with curved swords and great curved swords, firmly carries the weapons on their shoulder, rotates to the left, counterclockwise almost one and a half circles, and swings the weapons.",
             "The character is knocked backward, falling on their back, then slowly gets up and stands upright.",
             "The character leans to the right, twists their waist, sprints forward quickly, and firmly grips the knives with both hands. They swiftly swing the blades upwards towards the right.",
-            "The character holds a wedge-shaped weapon with both hands, raising it high above their head. They then take a lunge position with their right leg forward and left leg behind, and swing the weapon downwards."
-        ]
+            "The character holds a wedge-shaped weapon with both hands, raising it high above their head. They then take a lunge position with their right leg forward and left leg behind, and swing the weapon downwards.",
+        ],
     },
 
     demo: {
@@ -75,10 +75,13 @@ export default {
         promptIsEmpty: "Please input prompt",
         motionNotGenerated: "Motion hasn't been Generated",
         translateError: "Input in Chinese error, please use English.",
+
+        notFound: "Sorry, request error",
     },
 
     btn: {
         yes: "Yes",
         no: "No",
+        back: "Back",
     },
 };

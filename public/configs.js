@@ -1,6 +1,11 @@
 window.config = {
     demoOk: true,
 
+    // 网页默认语言设置：enUS/zhCN
+    defaultLang: "enUS",
+
+    articleUrl: "https://zhuanlan.zhihu.com/p/691984079",
+
     examples: {
         kindList: ["agpt_plus", "agpt", "mgpt", "mld", "mdm"],
         kindLabelList: [

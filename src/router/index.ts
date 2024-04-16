@@ -14,14 +14,19 @@ var routes = [
         name: "introduce",
         component: () => import("../views/Introduce.vue"),
     },
-    {
-        path: "/:lang/article",
-        name: "article",
-        component: () => import ("../views/Article.vue"),
-    },
+    // {
+    //     path: "/:lang/article",
+    //     name: "article",
+    //     component: () => import ("../views/Article.vue"),
+    // },
     {
         path: "/",
         redirect: "/enUS/",
+    },
+    {
+        path: "/:pathMatch(.*)*",
+        name: "NotFound",
+        component: () => import("../views/NotFound.vue"),
     },
 ];
 

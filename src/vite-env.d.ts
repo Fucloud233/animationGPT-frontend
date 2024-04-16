@@ -2,6 +2,10 @@
 
 declare interface Config {
     demoOk: boolean;
+    defaultLang: "enUS" | "zhCN";
+
+    articleUrl: string;
+
     examples: ExamplesConfig;
 }
 
@@ -22,14 +26,14 @@ declare interface Window {
     config: Config;
 }
 
-declare module '*.vue' {
-    import type { ComponentOptions } from 'vue'
-    const Component: ComponentOptions
-    export default Component
+declare module "*.vue" {
+    import type { ComponentOptions } from "vue";
+    const Component: ComponentOptions;
+    export default Component;
 }
-  
-declare module '*.md' {
-    import type { ComponentOptions } from 'vue'
-    const Component: ComponentOptions
-    export default Component
+
+declare module "*.md" {
+    import type { ComponentOptions } from "vue";
+    const Component: ComponentOptions;
+    export default Component;
 }

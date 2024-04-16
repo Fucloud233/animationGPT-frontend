@@ -71,7 +71,8 @@ export default {
                     name: "article",
                     label: "Article",
                     action: () => {
-                        this.$router.push({ name: "article" });
+                        // this.$router.push({ name: "article" });
+                        window.location.href = window.config.articleUrl;
                     },
                 },
                 {
@@ -134,7 +135,7 @@ export default {
 }
 
 #body-area {
-    padding: 30px 150px;
+    padding: 15px 15%;
 
     p {
         font-size: 18px;

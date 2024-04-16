@@ -13,7 +13,7 @@ const messages = {
 };
 
 const i18n = createI18n({
-    locale: "enUS",
+    locale: window.config.defaultLang,
     // legacy: false,
     // globalInjection: true,
     messages: messages,
