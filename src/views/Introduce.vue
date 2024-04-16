@@ -12,38 +12,20 @@
     </div>
 
     <div id="body-area">
-        <SubTitle :top="$t('introduce.article')" :bottom="$t('introduce.abstract')" />
-        <p>
-            Though the advancement of pre-trained large language models unfolds, the exploration of building a unified
-            model for language and other multimodal data, such as motion, remains challenging and untouched so far.
-            Fortunately, human motion displays a semantic coupling akin to human language, often perceived as a form of
-            body language. By fusing language data with large-scale motion models, motion-language pre-training that can
-            enhance the performance of motion-related tasks becomes feasible. Driven by this insight, we propose
-            MotionGPT, a unified, versatile, and user-friendly motion-language model to handle multiple motion-relevant
-            tasks. Specifically, we employ the discrete vector quantization for human motionand transfer 3D motion into
-            motion tokens, similar to the generation process ofword tokens. Building upon this “motion vocabulary”, we
-            perform language modeling on both motion and text in a unified manner, treating human motion as a specific
-            language. Moreover, inspired by prompt learning, we pre-train MotionGPT with a mixture of motion-language
-            data and fine-tune it on prompt-based question-and-answer tasks. Extensive experiments demonstrate that
-            MotionGPT achieves state-of-the-art performances on multiple motion tasks including text-driven motion
-            generation, motion captioning, motion prediction, and motion in-between.
-        </p>
+        <!-- 摘要 -->
+        <SubBlock top-title="article" main-title="abstract">
+            <template #tail> <ExampleDisplay></ExampleDisplay></template>
+        </SubBlock>
 
-        <ExampleDisplay />
+        <!-- 方法 -->
+        <SubBlock top-title="our" main-title="method">
+            <template #tail> <el-image :src="methodUrl"></el-image></template>
+        </SubBlock>
 
-        <SubTitle :top="$t('introduce.our')" :bottom="$t('introduce.method')" />
-        <p>
-            To involve large language data and models in the motion generation tasks, we propose a unified
-            motion-language framework named MotionGPT. MotionGPT consists of a motion tokenizer responsible for
-            converting raw motion data into discrete motion tokens, as well as a motion-aware language model that learns
-            to understand the motion tokens from large language pre-training models by corresponding textual
-            descriptions.
-        </p>
-        <el-image :src="methodUrl"></el-image>
-
-        <SubTitle :top="$t('introduce.our')" :bottom="$t('introduce.dataset')"></SubTitle>
-
-        <BilibiliVideo :bvid="bvid" :cid="cid" />
+        <!-- 数据集 -->
+        <SubBlock top-title="our" main-title="datasets">
+            <template #tail> <BilibiliVideo :bvid="bvid" :cid="cid"></BilibiliVideo></template>
+        </SubBlock>
 
         <el-divider></el-divider>
     </div>
@@ -51,20 +33,19 @@
 
 <script lang="ts">
 import SvgIcon from "../components/SvgIcon.vue";
-import SubTitle from "../components/SubTitle.vue";
-import ExampleDisplay from "../components/ExampleDisplay.vue";
-import BilibiliVideo from "../components/BilibiliVideo.vue";
+import SubBlock from "../components/introduce/SubBlock.vue";
+import ExampleDisplay from "../components/introduce/ExampleDisplay.vue";
+import BilibiliVideo from "../components/introduce/BilibiliVideo.vue";
 
 export default {
     components: {
         SvgIcon,
-        SubTitle,
+        SubBlock,
         ExampleDisplay,
         BilibiliVideo,
     },
     data() {
         const config = window.config.introduce;
-
         return {
             methodUrl: new URL(`../assets/test/method.png`, import.meta.url).href,
             routers: [
@@ -147,10 +128,9 @@ export default {
 
 #body-area {
     padding: 15px 15%;
-
-    p {
-        font-size: 18px;
-        line-height: 1.5em;
-    }
+    font-size: 18px;
+    line-height: 1.5em;
+    white-space: pre-wrap;
+    text-align: justify;
 }
 </style>
