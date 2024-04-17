@@ -47,7 +47,7 @@ export default {
     data() {
         const config = window.config.introduce;
         return {
-            methodUrl: new URL(`../assets/test/method.png`, import.meta.url).href,
+            methodUrl: new URL(`../assets/method.png`, import.meta.url).href,
             routers: [
                 {
                     name: "app",
