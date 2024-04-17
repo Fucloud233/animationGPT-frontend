@@ -61,6 +61,8 @@ export default {
 
         tipsForDemoNotOK: "抱歉，Demo 程序现在不可用。",
 
+        tipsForOverridePrompt: "您确定要覆盖当前的提示词吗？",
+
         // 因为只能通过英文输入，所以此处仍使用英文示例
         examples: [
             "The character's hands hang naturally at the sides of their body, their body's center of gravity slightly lowered, and they move slowly to the left.",

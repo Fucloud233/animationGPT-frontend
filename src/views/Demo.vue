@@ -42,7 +42,9 @@
             <el-scrollbar>
                 <ul style="padding-right: 15px; margin: 0">
                     <li v-for="example in $tm('demo.examples')">
-                        {{ example }}
+                        <a @click="selectExample(example)" style="color: black; text-decoration: none"
+                            >{{ example }}"</a
+                        >
                     </li>
                 </ul>
             </el-scrollbar>
@@ -215,6 +217,27 @@ export default {
             document.body.appendChild(link);
             link.click();
             link.remove();
+        },
+
+        async selectExample(prompt: string) {
+            if (this.prompt == prompt) return;
+
+            if (this.prompt == undefined || this.prompt == "") {
+                this.prompt = prompt;
+                return;
+            }
+
+            const result = await ElMessageBox.alert(this.$t("demo.tipsForOverridePrompt"), this.$t("demo.tips"), {
+                showCancelButton: true,
+                confirmButtonText: this.$t("btn.yes"),
+                cancelButtonText: this.$t("btn.no"),
+            })
+                .then(() => true)
+                .catch(() => false);
+
+            if (!result) return;
+
+            this.prompt = prompt;
         },
     },
 };

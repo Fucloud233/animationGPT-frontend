@@ -62,6 +62,8 @@ export default {
 
         tipsForDemoNotOK: "Sorry, this demo is unavailable now.",
 
+        tipsForOverridePrompt: "Do you want to override current prompt?",
+
         examples: [
             "The character's hands hang naturally at the sides of their body, their body's center of gravity slightly lowered, and they move slowly to the left.",
             "The character runs forward lightly.",
