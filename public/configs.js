@@ -3,7 +3,7 @@ window.config = {
     demoOk: true,
 
     // 网页默认语言设置：enUS/zhCN
-    defaultLang: "enUS",
+    defaultLang: "zhCN",
 
     // 介绍页面的配置
     introduce: {

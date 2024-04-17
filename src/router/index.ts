@@ -21,7 +21,7 @@ var routes = [
     // },
     {
         path: "/",
-        redirect: "/enUS/",
+        redirect: `/${window.config.defaultLang}/`,
     },
     {
         path: "/:pathMatch(.*)*",

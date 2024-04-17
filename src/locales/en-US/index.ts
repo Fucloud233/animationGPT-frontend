@@ -1,7 +1,7 @@
 export default {
     introduce: {
         mainTitle: "AnimationGPT",
-        coverTitle: "Game Action",
+        coverTitle: "Game Motion",
 
         prompt: "Prompt",
 
@@ -45,10 +45,10 @@ export default {
     },
 
     demo: {
-        title: "Action Generate",
+        title: "Motion Generate",
 
         inputLang: "Input Language",
-        inputPlaceHolder: "Please input text to generate action...",
+        inputPlaceHolder: "Please input text to generate motion...",
         refExample: "Reference Examples",
 
         clear: "Clear",
@@ -65,10 +65,10 @@ export default {
         tipsForOverridePrompt: "Do you want to override current prompt?",
 
         examples: [
-            "The character's hands hang naturally at the sides of their body, their body's center of gravity slightly lowered, and they move slowly to the left.",
             "The character runs forward lightly.",
             "The character rolls forward lightly and quickly gets up.",
             "The character is hit, their body goes into large stagger, and they get up at a moderate speed. They stagger in panic, leaning backward, while swinging their right arm in the air.",
+            "The character performs a roll attack with a single-handed weapon in their right hand. It is straightforward and powerful. During the half-crouched running motion, the character swings the weapon from left to right.",
             "The character holds a greatsword or ultra greatsword in their right hand and performs a charged heavy attack. They squat halfway, lean slightly to the right side with their upper body, and then swing the sword forward. Finally, they return to the original standing posture.",
             "The character wields a curved sword and a large curved sword in each hand, and swings the swords in rotation before returning to a standing posture.",
             "The character holds a katana in their right hand, runs quickly and charges, then uses a direct and powerful attack to thrust forward, and finally returns to a standing posture.",
@@ -76,7 +76,7 @@ export default {
         ],
 
         supportedWeapon:
-            "Currently supported weapon action modal types include: Dagger, Greatsword, Katana, Curved Sword, Axe, Spear, Hammer, Fist.",
+            "Currently supported weapon motion modal types include: Dagger, Greatsword, Katana, Curved Sword, Axe, Spear, Hammer, Fist.",
     },
 
     msg: {

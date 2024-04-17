@@ -65,10 +65,10 @@ export default {
 
         // 因为只能通过英文输入，所以此处仍使用英文示例
         examples: [
-            "The character's hands hang naturally at the sides of their body, their body's center of gravity slightly lowered, and they move slowly to the left.",
             "The character runs forward lightly.",
             "The character rolls forward lightly and quickly gets up.",
             "The character is hit, their body goes into large stagger, and they get up at a moderate speed. They stagger in panic, leaning backward, while swinging their right arm in the air.",
+            "The character performs a roll attack with a single-handed weapon in their right hand. It is straightforward and powerful. During the half-crouched running motion, the character swings the weapon from left to right.",
             "The character holds a greatsword or ultra greatsword in their right hand and performs a charged heavy attack. They squat halfway, lean slightly to the right side with their upper body, and then swing the sword forward. Finally, they return to the original standing posture.",
             "The character wields a curved sword and a large curved sword in each hand, and swings the swords in rotation before returning to a standing posture.",
             "The character holds a katana in their right hand, runs quickly and charges, then uses a direct and powerful attack to thrust forward, and finally returns to a standing posture.",
