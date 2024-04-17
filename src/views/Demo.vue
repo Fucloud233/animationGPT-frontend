@@ -42,9 +42,7 @@
             <el-scrollbar>
                 <ul style="padding-right: 15px; margin: 0">
                     <li v-for="example in $tm('demo.examples')">
-                        <a @click="selectExample(example)" style="color: black; text-decoration: none"
-                            >{{ example }}"</a
-                        >
+                        <a @click="selectExample(example)" style="color: black; text-decoration: none">{{ example }}</a>
                     </li>
                 </ul>
             </el-scrollbar>
