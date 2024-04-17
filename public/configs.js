@@ -14,8 +14,8 @@ window.config = {
         // 视频的客户端 id
         cid: "",
 
-        author: "xxx",
-        record: "xxx",
+        author: "Bernkastel",
+        record: "吉ICP备2024014736号",
     },
 
     // 用于示例显示的配置
