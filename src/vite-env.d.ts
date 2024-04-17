@@ -25,6 +25,9 @@ declare interface IntroduceConfig {
     articleUrl: string;
     cid: string | undefined;
     bvid: string;
+
+    author: string;
+    record: string;
 }
 
 declare interface Window {

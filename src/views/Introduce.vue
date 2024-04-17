@@ -28,6 +28,7 @@
         </SubBlock>
 
         <el-divider></el-divider>
+        <Footer></Footer>
     </div>
 </template>
 
@@ -37,12 +38,15 @@ import SubBlock from "../components/introduce/SubBlock.vue";
 import ExampleDisplay from "../components/introduce/ExampleDisplay.vue";
 import BilibiliVideo from "../components/introduce/BilibiliVideo.vue";
 
+import Footer from "../components/Footer.vue";
+
 export default {
     components: {
         SvgIcon,
         SubBlock,
         ExampleDisplay,
         BilibiliVideo,
+        Footer,
     },
     data() {
         const config = window.config.introduce;

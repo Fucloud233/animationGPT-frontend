@@ -13,6 +13,9 @@ window.config = {
         bvid: "BV14b411w7La",
         // 视频的客户端 id
         cid: "",
+
+        author: "xxx",
+        record: "xxx",
     },
 
     // 用于示例显示的配置
