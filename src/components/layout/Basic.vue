@@ -1,12 +1,7 @@
 <template>
     <el-container style="height: 100%">
         <el-header>
-            <el-button
-                @click="$router.push({ name: 'introduce' })"
-                id="title"
-                link
-                >AnimationGPT</el-button
-            >
+            <el-button @click="$router.push({ name: 'introduce' })" id="title" link>AnimationGPT</el-button>
 
             <el-dropdown>
                 <span style="outline: unset">
@@ -16,10 +11,7 @@
                     <el-dropdown-menu style="min-width: 100px">
                         <!-- 切换语言 -->
                         <div v-for="lang in langList">
-                            <el-dropdown-item
-                                v-if="$i18n.locale != lang.value"
-                                @click="changeLanguage(lang.value)"
-                            >
+                            <el-dropdown-item v-if="$i18n.locale != lang.value" @click="changeLanguage(lang.value)">
                                 {{ lang.label }}
                             </el-dropdown-item>
                         </div>
