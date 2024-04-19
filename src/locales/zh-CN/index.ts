@@ -96,7 +96,7 @@ export default {
 
         promptIsEmpty: "请输入提示词",
         motionNotGenerated: "动作尚未生成，请先生成",
-        translateError: "暂时不能使用中文输入，请输入英文",
+        // translateError: "暂时不能使用中文输入，请输入英文",
 
         notFound: "你找的页面走丢了~",
     },
