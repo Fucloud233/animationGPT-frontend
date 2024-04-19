@@ -38,13 +38,13 @@
 
                 <div class="dataset-wrap">
                     <div style="min-width: 20%; padding-right: 15px">
-                        <el-image :src="getUrl('dataset', 'gif')" style="aspect-ratio: 1 / 1"></el-image>
+                        <el-image :src="animationExampleUrl" style="aspect-ratio: 1 / 1"></el-image>
                         <p style="text-align: center; margin-top: 0px">
                             {{ $t("introduce.exampleAnimation") }}
                         </p>
                     </div>
                     <el-divider direction="vertical" style="height: 300px" border-style="dashed" />
-                    <el-image :src="getUrl('dataset', 'png')" style="height: auto"></el-image>
+                    <el-image :src="datasetIntroduceUrl" style="height: auto"></el-image>
                 </div>
 
                 <p>{{ $t("introduce.content.datasetAnnotation") }}</p>
@@ -57,14 +57,15 @@
 </template>
 
 <script lang="ts">
-import { getUrl } from "../utils";
-
 import SvgIcon from "../components/SvgIcon.vue";
 import SubBlock from "../components/introduce/SubBlock.vue";
 import ExampleDisplay from "../components/introduce/ExampleDisplay.vue";
 import BilibiliVideo from "../components/introduce/BilibiliVideo.vue";
-
 import Footer from "../components/Footer.vue";
+
+import methodUrl from "@/assets/images/method.png";
+import datasetIntroduceUrl from "@/assets/images/introduce.png";
+import animationExampleUrl from "@/assets/images/example.gif";
 
 export default {
     components: {
@@ -77,7 +78,9 @@ export default {
     data() {
         const config = window.config.introduce;
         return {
-            methodUrl: getUrl("method", "png"),
+            methodUrl,
+            datasetIntroduceUrl,
+            animationExampleUrl,
             routers: [
                 {
                     name: "app",
@@ -105,7 +108,6 @@ export default {
 
             cid: config.cid,
             bvid: config.bvid,
-            getUrl: getUrl,
         };
     },
 };
