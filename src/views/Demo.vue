@@ -47,9 +47,14 @@
                 </ul>
             </el-scrollbar>
 
-            <p style="color: #409eff; margin: 10px 0">
-                {{ $t("demo.supportedWeapon") }}
-            </p>
+            <div style="margin: 5px 0">
+                <p style="color: #409eff">
+                    {{ $t("demo.supportedWeapon") }}
+                </p>
+                <p style="font-size: 12px; color: gray; line-height: 100%">
+                    {{ curBadTip }}
+                </p>
+            </div>
         </div>
 
         <div style="width: 20px"></div>
@@ -109,11 +114,14 @@ import { generate, download } from "../api/demo";
 import { messages } from "../utils/message";
 import { ResultFileKind } from "../utils/file";
 import { LanguageKind, checkLanguage } from "../utils/language";
+import { watch } from "vue";
 
 export default {
     components: { BasicLayout, Download, ResultFileKind },
     data() {
         // const isEnglish = this.$i18n.locale == "enUS";
+
+        // const badTips = this.$tm("demo.tipsForBad") as string[];
 
         return {
             // language: isEnglish ? LanguageKind.EN : LanguageKind.CN,
@@ -132,10 +140,20 @@ export default {
             curId: undefined as string | undefined,
 
             // Notice: 此处用于使 enum 类型生效
-            ResultFileKind: ResultFileKind,
+            ResultFileKind,
+
+            curBadTipId: 0 as number,
+            curBadTip: (this.$tm("demo.tipsForBad") as string[])[0],
+            // badTips: badTips,
         };
     },
+
     mounted() {
+        window.setInterval(() => {
+            this.curBadTipId = (this.curBadTipId + 1) % 3;
+            this.curBadTip = (this.$tm("demo.tipsForBad") as string[])[this.curBadTipId];
+        }, 2000);
+
         // 可以手动设置是否可以使用 Demo 运行
         if (window.config.demoOk) return;
 

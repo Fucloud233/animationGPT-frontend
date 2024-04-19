@@ -77,7 +77,6 @@ export default {
         tipsForOverridePrompt: "Do you want to override current prompt?",
 
         examples: [
-            "The character runs forward lightly.",
             "The character rolls forward lightly and quickly gets up.",
             "The character is hit, their body goes into large stagger, and they get up at a moderate speed. They stagger in panic, leaning backward, while swinging their right arm in the air.",
             "The character performs a roll attack with a single-handed weapon in their right hand. It is straightforward and powerful. During the half-crouched running motion, the character swings the weapon from left to right.",
@@ -89,6 +88,12 @@ export default {
 
         supportedWeapon:
             "Currently supported weapon motion modal types include: Dagger, Greatsword, Katana, Curved Sword, Axe, Spear, Hammer, Fist.",
+
+        tipsForBad: [
+            "If the generation result is not satisfactory, feel free to try a few more times!",
+            "If the wait time is too long, it might be due to high server load. Please be patient!",
+            "The animation limbs may have slight jitter; you can download and use a curve smoothing tool for simple corrections.",
+        ],
     },
 
     msg: {
@@ -98,7 +103,6 @@ export default {
         promptIsEmpty: "Please input prompt",
         motionNotGenerated: "Motion hasn't been Generated",
         // translateError: "Input in Chinese error, please use English.",
-
         notFound: "Sorry, request error",
     },
 

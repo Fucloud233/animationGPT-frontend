@@ -77,7 +77,6 @@ export default {
 
         // 因为只能通过英文输入，所以此处仍使用英文示例
         examples: [
-            "The character runs forward lightly.",
             "The character rolls forward lightly and quickly gets up.",
             "The character is hit, their body goes into large stagger, and they get up at a moderate speed. They stagger in panic, leaning backward, while swinging their right arm in the air.",
             "The character performs a roll attack with a single-handed weapon in their right hand. It is straightforward and powerful. During the half-crouched running motion, the character swings the weapon from left to right.",
@@ -87,7 +86,12 @@ export default {
             "The character wields an axe in their right hand and performs a jumping attack. They jump up, and as they land, they swing the axe forward with their right hand before returning to a standing position.",
         ],
 
-        supportedWeapon: "目前可支持地武器动作模态类型： 匕首/大剑/太刀/曲剑/斧/载/锤/拳头",
+        supportedWeapon: "目前可支持的武器动作模态类型： 匕首/大剑/太刀/曲剑/斧/载/锤/拳头",
+        tipsForBad: [
+            "如果生成效果不满意，可以多试几次哦~",
+            "等待时间过长可能是因为服务器负载过大，不要着急哦~",
+            "动画肢体会有轻微抖动，可以下载后使用曲线平滑工具进行简单修正",
+        ],
     },
 
     msg: {
