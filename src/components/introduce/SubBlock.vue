@@ -1,5 +1,5 @@
 <template>
-    <SubTitle :top="$t(`introduce.subTitle.${topTitle}`)" :bottom="$t(`introduce.subTitle.${mainTitle}`)" />
+    <SubTitle :top="$t(`introduce.title.h1.${topTitle}`)" :bottom="$t(`introduce.title.h1.${mainTitle}`)" />
     <p>{{ $t(`introduce.content.${mainTitle}`) }}</p>
     <slot name="tail"></slot>
 </template>

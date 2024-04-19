@@ -1,7 +1,7 @@
 <template>
     <div id="title-area">
-        <div class="cover">{{ $t("introduce.coverTitle") }}</div>
-        <div class="title">{{ $t("introduce.mainTitle") }}</div>
+        <div class="cover">{{ $t("introduce.title.cover") }}</div>
+        <div class="title">{{ $t("introduce.title.main") }}</div>
         <div class="jump">
             <el-button class="my-btn" style="box-shadow: 0 0 5px" v-for="router in routers" @click="router.action">
                 <SvgIcon :name="router.name" color="#409eff" :size="18"></SvgIcon
@@ -18,13 +18,37 @@
         </SubBlock>
 
         <!-- 方法 -->
-        <SubBlock top-title="our" main-title="method">
+        <SubBlock top-title="used" main-title="method">
             <template #tail> <el-image :src="methodUrl"></el-image></template>
         </SubBlock>
 
         <!-- 数据集 -->
         <SubBlock top-title="our" main-title="datasets">
-            <template #tail> <BilibiliVideo :bvid="bvid" :cid="cid"></BilibiliVideo></template>
+            <template #tail>
+                <!-- 数据集动作展示 -->
+                <div class="sub-title">
+                    <h2>{{ $t("introduce.title.h2.datasetAnimation") }}</h2>
+                </div>
+                <BilibiliVideo :bvid="bvid" :cid="cid"> </BilibiliVideo>
+
+                <!-- 数据即标注展示 -->
+                <div class="sub-title">
+                    <h2>{{ $t("introduce.title.h2.datasetAnnotation") }}</h2>
+                </div>
+
+                <div class="dataset-wrap">
+                    <div style="min-width: 20%; padding-right: 15px">
+                        <el-image :src="getUrl('dataset', 'gif')" style="aspect-ratio: 1 / 1"></el-image>
+                        <p style="text-align: center; margin-top: 0px">
+                            {{ $t("introduce.exampleAnimation") }}
+                        </p>
+                    </div>
+                    <el-divider direction="vertical" style="height: 300px" border-style="dashed" />
+                    <el-image :src="getUrl('dataset', 'png')" style="height: auto"></el-image>
+                </div>
+
+                <p>{{ $t("introduce.content.datasetAnnotation") }}</p>
+            </template>
         </SubBlock>
 
         <el-divider></el-divider>
@@ -33,6 +57,8 @@
 </template>
 
 <script lang="ts">
+import { getUrl } from "../utils";
+
 import SvgIcon from "../components/SvgIcon.vue";
 import SubBlock from "../components/introduce/SubBlock.vue";
 import ExampleDisplay from "../components/introduce/ExampleDisplay.vue";
@@ -51,7 +77,7 @@ export default {
     data() {
         const config = window.config.introduce;
         return {
-            methodUrl: new URL(`../assets/method.png`, import.meta.url).href,
+            methodUrl: getUrl("method", "png"),
             routers: [
                 {
                     name: "app",
@@ -79,6 +105,7 @@ export default {
 
             cid: config.cid,
             bvid: config.bvid,
+            getUrl: getUrl,
         };
     },
 };
@@ -136,5 +163,26 @@ export default {
     line-height: 1.5em;
     white-space: pre-wrap;
     text-align: justify;
+
+    .sub-title {
+        display: flex;
+        justify-content: center;
+
+        width: auto;
+        text-align: center;
+        color: #409eff;
+
+        h2 {
+            font-size: large;
+            border-radius: 10px;
+            padding: 10px;
+            border: 1.5px #409eff solid;
+        }
+    }
+
+    .dataset-wrap {
+        display: flex;
+        align-items: center;
+    }
 }
 </style>

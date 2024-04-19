@@ -1,9 +1,28 @@
 export default {
     introduce: {
-        mainTitle: "AnimationGPT",
-        coverTitle: "Game Motion",
+        title: {
+            main: "AnimationGPT",
+            cover: "Game Motion",
+
+            h1: {
+                article: "Article",
+                abstract: "Abstract",
+
+                used: "Used",
+                method: "Method",
+
+                our: "Our",
+                datasets: "Datasets",
+            },
+
+            h2: {
+                datasetAnimation: "Dataset Animation Display",
+                datasetAnnotation: "Dataset Annotation Method Display",
+            },
+        },
 
         prompt: "Prompt",
+        exampleAnimation: "Example Animation",
 
         examples: [
             "The character's hands hang naturally at the sides of their body, their body's center of gravity slightly lowered, and they move slowly to the left.",
@@ -28,19 +47,12 @@ export default {
             "The character holds a wedge-shaped weapon with both hands, raising it high above their head. They then take a lunge position with their right leg forward and left leg behind, and swing the weapon downwards.",
         ],
 
-        subTitle: {
-            article: "Article",
-            abstract: "Abstract",
-
-            our: "Our",
-            method: "Method",
-            datasets: "Datasets",
-        },
-
         content: {
             abstract: `As the field of artificial intelligence rapidly progresses, the demand for high-quality, stylized motion datasets is increasingly urgent. Currently, the academic community predominantly relies on an open-source motion dataset, HumanML3D, created two years ago, containing 14.6k motions. The limited number and homogenized lifestyle-like style of these motions greatly constrain the depth and breadth of research. To address this issue, we independently produced and open-sourced a new, meticulously annotated stylized combat motion dataset, CombatMotion Dataset (referred to as "CM Dataset"), featuring 14.8k motions. \n\nThrough comprehensive comparisons of recent scientific findings and experimental training with the new dataset, we concluded that the MotionGPT framework excels in semantic understanding and consistency. This unified motion-language framework compresses raw motion data into discrete motion tokens using a Vector Quantised-Variational AutoEncoder (VQ-VAE) and employs a motion-aware language model to learn the relationships between these motion tokens and natural language. \n\nLeveraging the MotionGPT (referred to as "MGPT") framework and CM Dataset, we successfully trained a high-quality combat motion text-to-motion model—AnimationGPT—and developed a motion redirection script in Maya that converts the widely used academic SMPL skeleton into the industrially prevalent BVH format. \n\nOverall, we established a replicable workflow standard including data extraction, annotation, motion redirection, model training, inference, and integration with commercial engines. This breakthrough not only lays a solid foundation for enriching motion datasets and deepening research but also paves the way for the future development and commercial application of motion generation technologies. \n\nWe hope this work will inspire more researchers, developers, and enterprises to explore this underutilized field and jointly advance the practical application of artificial intelligence and human motion generation.`,
             method: `To involve large-scale language data and models in motion generation tasks, we utilize a unified motion-language framework named MotionGPT. Specifically, MotionGPT employs discrete vector quantization of human motion and converts 3D motions into motion tokens, akin to the generation process of word tokens. Based on this "motion vocabulary," we model both motion and text in a unified manner, treating human motion as a new foreign language. Through the model's inference, we "translate" natural human language into the most fitting sequences of human motions.`,
             datasets: `We initially extracted motion data primarily styled for combat from high-quality resources, detailing various motions extensively.\n\nTo standardize motion data, we selected the SMPL (Skinned Multi-Person Linear Model) skeleton as the base, a linearly composable general human skinning skeleton model. We redirected all motion data to the SMPL skeleton to ensure data consistency and reusability.\n\nDuring the motion data annotation process, we meticulously divided the data into eight categories including motion type, weapon type, attack type, direction, power descriptor, speed descriptor, fuzzy descriptor, and posture description sentences. Based on the planners' common expressions, we established a rich lexicon for the first seven categories and manually annotated them according to a mapping table, while also optimizing the expression of annotation content using natural language processing technology.\n\nThese efforts allowed us to create a combat-style motion dataset, CombatMotionRaw Dataset (CMR Dataset), containing 14.8k motions and an equal number of annotations. After receiving feedback from training, we adjusted the size and content of the annotations multiple times, ultimately producing a refined dataset, CombatMotionProcessed Dataset (CMP Dataset), with 8.7k motions and 26.1k annotation texts.`,
+            datasetAnnotation:
+                "The diagram above outlines our annotation process. Initially, we fill in seven key descriptive words based on the characteristics of the animation, followed by writing posture description sentences. Subsequently, we use a large language model to integrate these elements into several complete natural language sentences. Finally, we select the sentence that best meets our requirements as the annotation result.",
         },
     },
 
