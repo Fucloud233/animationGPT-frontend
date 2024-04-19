@@ -10,7 +10,7 @@ window.config = {
         // 跳转的文章连接
         articleUrl: "https://zhuanlan.zhihu.com/p/691984079",
         // 视频的 bv 号
-        bvid: "BV14b411w7La",
+        bvid: "BV1rH4y1P76p",
         // 视频的客户端 id
         cid: "",
 
