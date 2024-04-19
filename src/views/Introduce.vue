@@ -63,9 +63,9 @@ import ExampleDisplay from "../components/introduce/ExampleDisplay.vue";
 import BilibiliVideo from "../components/introduce/BilibiliVideo.vue";
 import Footer from "../components/Footer.vue";
 
-import methodUrl from "@/assets/images/method.png";
-import datasetIntroduceUrl from "@/assets/images/introduce.png";
-import animationExampleUrl from "@/assets/images/example.gif";
+// import methodUrl from "@/assets/images/method.png";
+// import datasetIntroduceUrl from "@/assets/images/introduce.png";
+// import animationExampleUrl from "@/assets/images/example.gif";
 
 export default {
     components: {
@@ -78,9 +78,9 @@ export default {
     data() {
         const config = window.config.introduce;
         return {
-            methodUrl,
-            datasetIntroduceUrl,
-            animationExampleUrl,
+            methodUrl: "https://pic.imgdb.cn/item/6622f59ed43df5c8e210a6a7.png",
+            datasetIntroduceUrl: "https://pic.imgdb.cn/item/6622f59ed43df5c8e210a6a6.png",
+            animationExampleUrl: "https://pic.imgdb.cn/item/6622f59ed43df5c8e210a6a5.gif",
             routers: [
                 {
                     name: "app",
