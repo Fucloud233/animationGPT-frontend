@@ -26,7 +26,7 @@ export default {
         };
     },
     mounted() {
-        var baseUrl = `//player.bilibili.com/player.html?danmaku=0&bvid=${this.bvid}`;
+        var baseUrl = `https://player.bilibili.com/player.html?danmaku=0&bvid=${this.bvid}`;
 
         if (this.cid != undefined && this.cid != "") baseUrl += "&cid=" + this.cid;
 
