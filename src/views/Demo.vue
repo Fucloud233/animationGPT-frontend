@@ -114,7 +114,6 @@ import { generate, download } from "../api/demo";
 import { messages } from "../utils/message";
 import { ResultFileKind } from "../utils/file";
 import { LanguageKind, checkLanguage } from "../utils/language";
-import { watch } from "vue";
 
 export default {
     components: { BasicLayout, Download, ResultFileKind },
