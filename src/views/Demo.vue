@@ -51,9 +51,13 @@
                 <p style="color: #409eff">
                     {{ $t("demo.supportedWeapon") }}
                 </p>
-                <p style="font-size: 12px; color: gray; line-height: 100%">
-                    {{ curBadTip }}
-                </p>
+
+                <!-- 循环播放叠甲 -->
+                <ChangeP
+                    ref="badTip"
+                    style="font-size: 12px; color: gray; line-height: 100%"
+                    :texts="$tm('demo.tipsForBad') as string[]"
+                />
             </div>
         </div>
 
@@ -109,6 +113,7 @@ import { Download } from "@element-plus/icons-vue";
 import { ElMessageBox } from "element-plus";
 
 import BasicLayout from "../components/layout/Basic.vue";
+import ChangeP from "@/components/demo/ChangeP.vue";
 
 import { generate, download } from "../api/demo";
 import { messages } from "../utils/message";
@@ -116,11 +121,9 @@ import { ResultFileKind } from "../utils/file";
 import { LanguageKind, checkLanguage } from "../utils/language";
 
 export default {
-    components: { BasicLayout, Download, ResultFileKind },
+    components: { BasicLayout, Download, ResultFileKind, ChangeP },
     data() {
         // const isEnglish = this.$i18n.locale == "enUS";
-
-        // const badTips = this.$tm("demo.tipsForBad") as string[];
 
         return {
             // language: isEnglish ? LanguageKind.EN : LanguageKind.CN,
@@ -140,19 +143,10 @@ export default {
 
             // Notice: 此处用于使 enum 类型生效
             ResultFileKind,
-
-            curBadTipId: 0 as number,
-            curBadTip: (this.$tm("demo.tipsForBad") as string[])[0],
-            // badTips: badTips,
         };
     },
 
     mounted() {
-        window.setInterval(() => {
-            this.curBadTipId = (this.curBadTipId + 1) % 3;
-            this.curBadTip = (this.$tm("demo.tipsForBad") as string[])[this.curBadTipId];
-        }, 2000);
-
         // 可以手动设置是否可以使用 Demo 运行
         if (window.config.demoOk) return;
 
