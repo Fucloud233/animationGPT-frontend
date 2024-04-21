@@ -57,6 +57,7 @@
                     ref="badTip"
                     style="font-size: 12px; color: gray; line-height: 100%"
                     :texts="$tm('demo.tipsForBad') as string[]"
+                    :delay="badTipDelay"
                 />
             </div>
         </div>
@@ -125,13 +126,16 @@ export default {
     data() {
         // const isEnglish = this.$i18n.locale == "enUS";
 
+        const config = window.config;
+
         return {
             // language: isEnglish ? LanguageKind.EN : LanguageKind.CN,
             language: LanguageKind.EN,
 
             prompt: "",
 
-            demoOk: window.config.demoOk,
+            demoOk: config.demoOk,
+            badTipDelay: config.badTipDelay,
 
             isGenerating: false,
             showDialog: false,

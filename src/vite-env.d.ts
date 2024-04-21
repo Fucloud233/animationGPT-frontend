@@ -2,6 +2,8 @@
 
 declare interface Config {
     demoOk: boolean;
+    badTipDelay: number;
+
     defaultLang: "enUS" | "zhCN";
 
     introduce: IntroduceConfig;

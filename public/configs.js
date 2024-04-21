@@ -1,6 +1,7 @@
 window.config = {
     // 开关 Demo 页面的使用
     demoOk: true,
+    badTipDelay: 10,
 
     // 网页默认语言设置：enUS/zhCN
     defaultLang: "zhCN",
