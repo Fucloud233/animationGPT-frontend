@@ -5,6 +5,16 @@
 
 后端部分：[animationGPT-backend](https://github.com/Fucloud233/animationGPT-backend)
 
+## 页面截图
+
+### 介绍页面
+
+![introduce](docs/screenshots/introduce.png)
+
+### Demo 页面
+
+![demo](docs/screenshots/demo.png)
+
 ## 配置说明
 
 ### 1. Nginx 配置
