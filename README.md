@@ -19,42 +19,12 @@
 
 ### 1. Nginx 配置
 
-当使用 `npm run build` 命令将本项目文件转换为静态文件，
-并使用 nginx 部署时，需要在 nginx 中配置以下内容。
+本项目 Nginx 对生成后的网页静态文件进行部署，具体的配置文件可以参考 [docs/nginx.conf](./docs/nginx.conf)。
 
-```
-server {
-   # 监听端口
-   listen 8080;
-   # 项目所在文件路径
-   root /usr/share/nginx/html;
+本项目还提供了以下两个脚本用于构建和部署网页项目。
 
-   # 以下是为 vue-router 进行配置
-   location / {
-      try_files $uri $uri/ @router;
-      index index.html;
-   }
-   location @router {
-      rewrite ^.*$ /index.html last;
-   }
-
-   # 以下是为后端服务器镜像进行配置
-   location /api {
-      proxy_pass  http://127.0.0.1:8082/;
-      proxy_redirect off;
-      proxy_set_header Host $host;
-      proxy_set_header X-Real-IP $remote_addr;
-      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-   }
-
-   # 配置静态文件访问
-   # 注意: 不要将静态文件放置到 html 目录内，会直接被覆盖
-   location ^~ /assets/examples {
-      alias /usr/share/nginx/examples;
-   }
-}
-
-```
+-   `build.sh`：使用 `npm` 构建静态文件，并通过 scp 上传到服务器上。
+-   `deploy.sh`：解压压缩包，并拷贝到 `/usr/share/nginx/html` 中
 
 ### 2. 网页配置
 
